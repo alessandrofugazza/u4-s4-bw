@@ -1,9 +1,11 @@
 package buildweek.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "rivenditori")
+
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Rivenditore {
     @Id
@@ -13,6 +15,9 @@ public abstract class Rivenditore {
 
     @Column(name = "luogo_di_emissione")
     protected String luogoDiEmissione;
+    @OneToMany(mappedBy = "rivenditore")
+    List<Biglietto> bigliettoList;
+
 
     protected Rivenditore() {
     }

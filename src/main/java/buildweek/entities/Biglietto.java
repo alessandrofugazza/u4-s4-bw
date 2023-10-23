@@ -13,13 +13,18 @@ public class Biglietto {
     @Column(name = "codice_univoco")
     private long codiceUnivoco;
 
+    @Enumerated(EnumType.STRING)
     private Vidimazione vidimazione;
+    @ManyToOne
+    @JoinColumn(name = "rivenditore_id")
+    private Rivenditore rivenditore;
 
     public Biglietto() {
     }
 
-    public Biglietto(Vidimazione vidimazione) {
+    public Biglietto(Vidimazione vidimazione, Rivenditore rivenditore) {
         this.vidimazione = vidimazione;
+        this.rivenditore = rivenditore;
     }
 
     public long getCodiceUnivoco() {
@@ -33,6 +38,7 @@ public class Biglietto {
 
     public void setVidimazione(Vidimazione vidimazione) {
         this.vidimazione = vidimazione;
+
     }
 
     @Override
