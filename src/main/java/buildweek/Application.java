@@ -17,7 +17,7 @@ public class Application {
         Faker faker = new Faker();
         EntityManager em = emf.createEntityManager();
         Scanner input = new Scanner(System.in);
-
+        
 
         input.close();
         em.close();
