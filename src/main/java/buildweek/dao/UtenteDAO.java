@@ -1,5 +1,7 @@
 package buildweek.dao;
 
+import buildweek.entities.Utente;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -10,7 +12,7 @@ public class UtenteDAO {
         this.em = em;
     }
 
-    public void save(UtenteDAO utente) {
+    public void save(Utente utente) {
         try {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
@@ -23,12 +25,12 @@ public class UtenteDAO {
 
     }
 
-    public UtenteDAO findById(long id) {
-        return em.find(UtenteDAO.class, id);
+    public Utente findById(long id) {
+        return em.find(Utente.class, id);
     }
 
     public void findByIdAndDelete(long id) {
-        UtenteDAO foundPublication = em.find(UtenteDAO.class, id);
+        Utente foundPublication = em.find(Utente.class, id);
 
         if (foundPublication != null) {
             EntityTransaction transaction = em.getTransaction();
@@ -42,7 +44,7 @@ public class UtenteDAO {
 
     }
 
-    public void refresh(UtenteDAO utente) {
+    public void refresh(Utente utente) {
         em.refresh(utente);
         System.out.println("L'utente e' stato refreshato");
     }

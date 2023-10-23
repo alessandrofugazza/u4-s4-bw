@@ -1,5 +1,7 @@
 package buildweek.dao;
 
+import buildweek.entities.Rivenditore;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -10,7 +12,7 @@ public class RivenditoreDAO {
         this.em = em;
     }
 
-    public void save(RivenditoreDAO rivenditore) {
+    public void save(Rivenditore rivenditore) {
         try {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
@@ -23,12 +25,12 @@ public class RivenditoreDAO {
 
     }
 
-    public RivenditoreDAO findById(long id) {
-        return em.find(RivenditoreDAO.class, id);
+    public Rivenditore findById(long id) {
+        return em.find(Rivenditore.class, id);
     }
 
     public void findByIdAndDelete(long id) {
-        RivenditoreDAO foundPublication = em.find(RivenditoreDAO.class, id);
+        Rivenditore foundPublication = em.find(Rivenditore.class, id);
 
         if (foundPublication != null) {
             EntityTransaction transaction = em.getTransaction();
@@ -42,7 +44,7 @@ public class RivenditoreDAO {
 
     }
 
-    public void refresh(RivenditoreDAO rivenditore) {
+    public void refresh(Rivenditore rivenditore) {
         em.refresh(rivenditore);
         System.out.println("Il rivenditore e' stato refreshato");
     }

@@ -16,16 +16,26 @@ public class Utente {
     private String lastName;
     @Column(name = "birth_date")
     private LocalDate birthDate;
+    
+    @OneToOne(mappedBy = "utente")
+    private Tessera tessera;
 
 
     public Utente() {
     }
 
-
     public Utente(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+    }
+
+    public Tessera getTessera() {
+        return tessera;
+    }
+
+    public void setTessera(Tessera tessera) {
+        this.tessera = tessera;
     }
 
     public long getUserId() {

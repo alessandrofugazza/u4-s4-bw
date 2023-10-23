@@ -1,5 +1,7 @@
 package buildweek.dao;
 
+import buildweek.entities.Tessera;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -10,7 +12,7 @@ public class TesseraDAO {
         this.em = em;
     }
 
-    public void save(TesseraDAO tessera) {
+    public void save(Tessera tessera) {
         try {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
@@ -23,12 +25,12 @@ public class TesseraDAO {
 
     }
 
-    public TesseraDAO findById(long id) {
-        return em.find(TesseraDAO.class, id);
+    public Tessera findById(long id) {
+        return em.find(Tessera.class, id);
     }
 
     public void findByIdAndDelete(long id) {
-        TesseraDAO foundPublication = em.find(TesseraDAO.class, id);
+        Tessera foundPublication = em.find(Tessera.class, id);
 
         if (foundPublication != null) {
             EntityTransaction transaction = em.getTransaction();
@@ -42,7 +44,7 @@ public class TesseraDAO {
 
     }
 
-    public void refresh(TesseraDAO tessera) {
+    public void refresh(Tessera tessera) {
         em.refresh(tessera);
         System.out.println("La tessera e' stata refreshata");
     }

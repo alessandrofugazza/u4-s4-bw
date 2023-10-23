@@ -1,5 +1,7 @@
 package buildweek.dao;
 
+import buildweek.entities.Biglietto;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -10,7 +12,7 @@ public class BigliettoDAO {
         this.em = em;
     }
 
-    public void save(BigliettoDAO biglietto) {
+    public void save(Biglietto biglietto) {
         try {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
@@ -23,12 +25,12 @@ public class BigliettoDAO {
 
     }
 
-    public BigliettoDAO findById(long id) {
-        return em.find(BigliettoDAO.class, id);
+    public Biglietto findById(long id) {
+        return em.find(Biglietto.class, id);
     }
 
     public void findByIdAndDelete(long id) {
-        BigliettoDAO foundPublication = em.find(BigliettoDAO.class, id);
+        Biglietto foundPublication = em.find(Biglietto.class, id);
 
         if (foundPublication != null) {
             EntityTransaction transaction = em.getTransaction();
@@ -42,7 +44,7 @@ public class BigliettoDAO {
 
     }
 
-    public void refresh(BigliettoDAO biglietto) {
+    public void refresh(Biglietto biglietto) {
         em.refresh(biglietto);
         System.out.println("Il biglietto e' stato refreshato");
     }

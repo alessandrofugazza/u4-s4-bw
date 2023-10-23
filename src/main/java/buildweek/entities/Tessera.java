@@ -20,14 +20,31 @@ public class Tessera {
 
     @Column(name = "data_odierna_tessera")
     private LocalDate dataOdiernaTessera;
+    @OneToOne
+    @JoinColumn(name = "id_utente")
+    private Utente utente;
+
+    @OneToOne(mappedBy = "tessera")
+    private Abbonamento abbonamento;
+
 
     public Tessera() {
     }
 
-    public Tessera(LocalDate dataDiEmissioneTessera, LocalDate dataDiScandenzaTessera, LocalDate dataOdiernaTessera) {
+    public Tessera(LocalDate dataDiEmissioneTessera, LocalDate dataOdiernaTessera, Utente utente) {
         this.dataDiEmissioneTessera = dataDiEmissioneTessera;
-        this.dataDiScandenzaTessera = dataDiScandenzaTessera;
+        this.dataDiScandenzaTessera = dataDiEmissioneTessera.plusYears(1);
         this.dataOdiernaTessera = dataOdiernaTessera;
+        this.utente = utente;
+    }
+
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public long getNumeroTessera() {

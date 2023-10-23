@@ -25,15 +25,36 @@ public class Abbonamento {
 
     @Column(name = "data_odierna_abbonamento")
     private LocalDate dataOdiernaAbbonamento;
+    @OneToOne
+    @JoinColumn(name = "numero_tessera")
+    private Tessera tessera;
 
     public Abbonamento() {
     }
 
-    public Abbonamento(DurataAbbonamento durataAbbonamento, LocalDate dataDiEmissioneAbbonamento, LocalDate dataDiScandenzaAbbonamento, LocalDate dataOdiernaAbbonamento) {
+    public Abbonamento(DurataAbbonamento durataAbbonamento, LocalDate dataDiEmissioneAbbonamento, LocalDate dataOdiernaAbbonamento, Tessera tessera) {
         this.durataAbbonamento = durataAbbonamento;
         this.dataDiEmissioneAbbonamento = dataDiEmissioneAbbonamento;
-        this.dataDiScandenzaAbbonamento = dataDiScandenzaAbbonamento;
+        switch (durataAbbonamento) {
+            case SETTIMANALE: {
+                this.dataDiScandenzaAbbonamento = dataDiEmissioneAbbonamento.plusDays(7);
+                break;
+            }
+            case MENSILE: {
+                this.dataDiScandenzaAbbonamento = dataDiEmissioneAbbonamento.plusMonths(1);
+                break;
+            }
+        }
         this.dataOdiernaAbbonamento = dataOdiernaAbbonamento;
+        this.tessera = tessera;
+    }
+
+    public Tessera getTessera() {
+        return tessera;
+    }
+
+    public void setTessera(Tessera tessera) {
+        this.tessera = tessera;
     }
 
     public long getCodiceAbbonamento() {

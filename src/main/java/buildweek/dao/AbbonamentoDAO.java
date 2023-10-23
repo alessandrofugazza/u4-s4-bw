@@ -1,5 +1,7 @@
 package buildweek.dao;
 
+import buildweek.entities.Abbonamento;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -10,7 +12,7 @@ public class AbbonamentoDAO {
         this.em = em;
     }
 
-    public void save(AbbonamentoDAO abbonamento) {
+    public void save(Abbonamento abbonamento) {
         try {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
@@ -23,12 +25,12 @@ public class AbbonamentoDAO {
 
     }
 
-    public AbbonamentoDAO findById(long id) {
-        return em.find(AbbonamentoDAO.class, id);
+    public Abbonamento findById(long id) {
+        return em.find(Abbonamento.class, id);
     }
 
     public void findByIdAndDelete(long id) {
-        AbbonamentoDAO foundPublication = em.find(AbbonamentoDAO.class, id);
+        Abbonamento foundPublication = em.find(Abbonamento.class, id);
 
         if (foundPublication != null) {
             EntityTransaction transaction = em.getTransaction();
@@ -42,7 +44,7 @@ public class AbbonamentoDAO {
 
     }
 
-    public void refresh(AbbonamentoDAO abbonamento) {
+    public void refresh(Abbonamento abbonamento) {
         em.refresh(abbonamento);
         System.out.println("L'abbonamento e' stato refreshato");
     }
