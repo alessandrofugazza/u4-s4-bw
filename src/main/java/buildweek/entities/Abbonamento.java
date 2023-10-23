@@ -14,6 +14,7 @@ public class Abbonamento {
     @Column(name = "codice_abbonamento")
     private long codiceAbbonamento;
 
+    @Enumerated(EnumType.STRING)
     private DurataAbbonamento durataAbbonamento;
 
     @Column(name = "data_di_emissione_abbonamento")

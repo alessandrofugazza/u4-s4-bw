@@ -1,12 +1,43 @@
 package buildweek.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "rivenditori")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Rivenditore {
+public abstract class Rivenditore {
+    @Id
+    @GeneratedValue
+    @Column(name = "rivenditore_id")
+    protected long rivenditoreId;
+
+    @Column(name = "luogo_di_emissione")
+    protected String luogoDiEmissione;
+
+    protected Rivenditore() {
+    }
+
+    public Rivenditore(String luogoDiEmissione) {
+        this.luogoDiEmissione = luogoDiEmissione;
+    }
+
+    public long getRivenditoreId() {
+        return rivenditoreId;
+    }
+
+    public String getLuogoDiEmissione() {
+        return luogoDiEmissione;
+    }
+
+    public void setLuogoDiEmissione(String luogoDiEmissione) {
+        this.luogoDiEmissione = luogoDiEmissione;
+    }
+
+    @Override
+    public String toString() {
+        return "Rivenditore{" +
+                "rivenditoreId=" + rivenditoreId +
+                ", luogoDiEmissione='" + luogoDiEmissione + '\'' +
+                '}';
+    }
 }
