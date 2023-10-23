@@ -1,9 +1,12 @@
 package buildweek.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "rivenditori")
-public abstract class Rivenditore {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Rivenditore {
 }
