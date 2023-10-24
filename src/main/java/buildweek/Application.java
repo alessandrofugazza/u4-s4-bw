@@ -1,10 +1,7 @@
 package buildweek;
 
 import buildweek.dao.*;
-import buildweek.entities.DistributoreAutomatico;
-import buildweek.entities.RivenditoreAutorizzato;
-import buildweek.entities.Tratta;
-import buildweek.entities.Utente;
+import buildweek.entities.*;
 import buildweek.enums.StatusDistributore;
 import com.github.javafaker.Faker;
 
@@ -14,6 +11,7 @@ import javax.persistence.Persistence;
 import java.time.ZoneId;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class Application {
@@ -32,6 +30,7 @@ public class Application {
         BigliettoDAO bd = new BigliettoDAO(em);
         MezziDAO md = new MezziDAO(em);
         TrattaDAO trd = new TrattaDAO(em);
+        PeriodoDAO ped = new PeriodoDAO(em);
 
         Supplier<Utente> userSupplier = () -> new Utente(
                 faker.name().firstName(),
@@ -124,6 +123,15 @@ public class Application {
 //
 //            md.save(tramSupplier);
 //        }
+        for (int i = 263; i < 268; i++) {
+            Mezzi foundMezzi = md.findById(i);
+            Periodo periodoSupplier = new Manutenzione(
+                    faker.date().past(30, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                    faker.date().future(20, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                    foundMezzi
+            );
+            ped.save(periodoSupplier);
+        }
 
 
         input.close();

@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="653a416f-2370-4e1a-b04f-60cffe3ecb53" name="Changes" comment="project initialization">
+      <change afterPath="$PROJECT_DIR$/src/main/java/buildweek/dao/PeriodoDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/buildweek/entities/Manutenzione.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/buildweek/entities/Periodo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/buildweek/entities/Servizio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/buildweek/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/buildweek/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/buildweek/entities/Mezzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/buildweek/entities/Mezzi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +64,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="buildweek.dao" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

@@ -23,8 +23,13 @@ public abstract class Mezzi {
     @OneToOne
     @JoinColumn(name = "id_tratta")
     private Tratta tratta;
+    @OneToMany(mappedBy = "mezzi")
+    private List<Manutenzione> manutenzioneList;
+    @OneToMany(mappedBy = "mezzi")
+    private List<Servizio> servizioList;
 
-    public Mezzi() {
+
+    protected Mezzi() {
     }
 
     public Mezzi(int capienza, StatusMezzo statusMezzo, Tratta tratta) {
