@@ -2,7 +2,6 @@ package buildweek;
 
 import buildweek.dao.*;
 import buildweek.entities.DistributoreAutomatico;
-import buildweek.entities.RivenditoreAutorizzato;
 import buildweek.entities.Utente;
 import buildweek.enums.StatusDistributore;
 import com.github.javafaker.Faker;
@@ -19,7 +18,7 @@ public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("u4-s4-bw");
 
     public static void main(String[] args) {
-        
+
         Faker faker = new Faker();
         Random rndm = new Random();
         EntityManager em = emf.createEntityManager();
@@ -41,7 +40,7 @@ public class Application {
 //        }
 
 
-//        for (int i = 71; i < 76; i++) {
+//        for (int i = 1; i < 6; i++) {
 //            Utente foundUsers = ud.findById(i);
 //            Tessera newTessera = new Tessera(
 //                    faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
@@ -51,7 +50,7 @@ public class Application {
 //            td.save(newTessera);
 //        }
 
-//        for (int i = 89; i < 94; i++) {
+//        for (int i = 6; i < 11; i++) {
 //
 //            Tessera foundTessera = td.findById(i);
 //            Abbonamento newAbbonamento =
@@ -70,14 +69,14 @@ public class Application {
 //            rd.save(distributoreAutomaticoSupplier.get());
 //        }
 
-        Supplier<RivenditoreAutorizzato> rivenditoreAutorizzatoSupplier = () -> new RivenditoreAutorizzato(
-                faker.address().cityName(),
-                faker.rickAndMorty().character());
+//        Supplier<RivenditoreAutorizzato> rivenditoreAutorizzatoSupplier = () -> new RivenditoreAutorizzato(
+//                faker.address().cityName(),
+//                faker.rickAndMorty().character());
 //        for (int i = 0; i < 5; i++) {
 //            rd.save(rivenditoreAutorizzatoSupplier.get());
 //        }
 
-//        for (int i = 104; i < 114; i++) {
+//        for (int i = 16; i < 25; i++) {
 //            Rivenditore foundRive = rd.findById(i);
 //            Biglietto newBiglietto = new Biglietto(
 //                    Vidimazione.values()[faker.number().numberBetween(0, Vidimazione.values().length)],
