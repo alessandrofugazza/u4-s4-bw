@@ -2,6 +2,7 @@ package buildweek;
 
 import buildweek.dao.*;
 import buildweek.entities.DistributoreAutomatico;
+import buildweek.entities.RivenditoreAutorizzato;
 import buildweek.entities.Utente;
 import buildweek.enums.StatusDistributore;
 import com.github.javafaker.Faker;
@@ -35,10 +36,21 @@ public class Application {
                 faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         );
 
+        Supplier<DistributoreAutomatico> distributoreAutomaticoSupplier = () -> new DistributoreAutomatico(
+                faker.address().cityName(),
+                StatusDistributore.values()[faker.number().numberBetween(0, StatusDistributore.values().length)]
+        );
+
+        Supplier<RivenditoreAutorizzato> rivenditoreAutorizzatoSupplier = () -> new RivenditoreAutorizzato(
+                faker.address().cityName(),
+                faker.rickAndMorty().character()
+        );
+
+// INIZIO CREAZIONE DATABASE ------------------------------------------------------
+
 //        for (int i = 0; i < 5; i++) {
 //            ud.save(userSupplier.get());
 //        }
-
 
 //        for (int i = 1; i < 6; i++) {
 //            Utente foundUsers = ud.findById(i);
@@ -61,21 +73,14 @@ public class Application {
 //            ad.save(newAbbonamento);
 //        }
 
-        Supplier<DistributoreAutomatico> distributoreAutomaticoSupplier = () -> new DistributoreAutomatico(
-                faker.address().cityName(),
-                StatusDistributore.values()[faker.number().numberBetween(0, StatusDistributore.values().length)]);
-
 //        for (int i = 0; i < 5; i++) {
 //            rd.save(distributoreAutomaticoSupplier.get());
 //        }
 
-//        Supplier<RivenditoreAutorizzato> rivenditoreAutorizzatoSupplier = () -> new RivenditoreAutorizzato(
-//                faker.address().cityName(),
-//                faker.rickAndMorty().character());
 //        for (int i = 0; i < 5; i++) {
 //            rd.save(rivenditoreAutorizzatoSupplier.get());
 //        }
-
+//
 //        for (int i = 16; i < 25; i++) {
 //            Rivenditore foundRive = rd.findById(i);
 //            Biglietto newBiglietto = new Biglietto(
@@ -85,6 +90,7 @@ public class Application {
 //            bd.save(newBiglietto);
 //        }
 
+// FINE CREAZIONE DATABASE ----------------------------------------------------
 
         input.close();
         em.close();

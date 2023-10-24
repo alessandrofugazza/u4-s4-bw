@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="653a416f-2370-4e1a-b04f-60cffe3ecb53" name="Changes" comment="project initialization">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/buildweek/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/buildweek/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "MF",
+    "git-widget-placeholder": "AF",
     "rearrange.code.on.save": "true",
     "settings.editor.selected.configurable": "actions.on.save"
   }
