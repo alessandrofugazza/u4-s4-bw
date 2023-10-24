@@ -1,9 +1,11 @@
 package buildweek;
 
 import buildweek.dao.*;
-import buildweek.entities.*;
+import buildweek.entities.DistributoreAutomatico;
+import buildweek.entities.RivenditoreAutorizzato;
+import buildweek.entities.Tratta;
+import buildweek.entities.Utente;
 import buildweek.enums.StatusDistributore;
-import buildweek.enums.Vidimazione;
 import com.github.javafaker.Faker;
 
 import javax.persistence.EntityManager;
@@ -76,18 +78,19 @@ public class Application {
 //        }
 
 
-        for (int i = 0; i < 8; i++) {
-            Rivenditore foundRive = rd.findById(rndm.nextInt(220, 227));
-            Mezzi foundMezzo = md.findById(rndm.nextInt(263, 274));
-            Biglietto newBiglietto = new Biglietto(
-                    Vidimazione.values()[faker.number().numberBetween(0, Vidimazione.values().length)],
-                    foundRive,
-                    foundMezzo
-            );
+//        for (int i = 0; i < 8; i++) {
+//            Rivenditore foundRive = rd.findById(rndm.nextInt(220, 227));
+//            Mezzi foundMezzo = md.findById(rndm.nextInt(263, 274));
+//            Biglietto newBiglietto = new Biglietto(
+//                    Vidimazione.values()[faker.number().numberBetween(0, Vidimazione.values().length)],
+//                    foundRive,
+//                    faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                    foundMezzo
+//            );
+//
+//            bd.save(newBiglietto);
+//        }
 
-            bd.save(newBiglietto);
-        }
-        
 
         Supplier<Tratta> trattaSupplier = () -> new Tratta(
                 faker.country().capital(),
