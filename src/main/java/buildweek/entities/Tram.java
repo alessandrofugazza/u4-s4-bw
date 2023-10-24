@@ -9,8 +9,8 @@ public class Tram extends Mezzi {
     public Tram() {
     }
 
-    public Tram(int capienza, StatusMezzo statusMezzo) {
-        super(capienza, statusMezzo);
+    public Tram(int capienza, StatusMezzo statusMezzo, Tratta tratta) {
+        super(capienza, statusMezzo, tratta);
     }
 
     @Override
