@@ -1,12 +1,11 @@
 package buildweek;
 
 import buildweek.dao.*;
-import buildweek.entities.*;
+import buildweek.entities.DistributoreAutomatico;
+import buildweek.entities.RivenditoreAutorizzato;
+import buildweek.entities.Utente;
 import buildweek.enums.StatusDistributore;
-import buildweek.enums.Vidimazione;
 import com.github.javafaker.Faker;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,7 +19,7 @@ public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("u4-s4-bw");
 
     public static void main(String[] args) {
-        Logger log = LoggerFactory.getLogger(Application.class);
+        
         Faker faker = new Faker();
         Random rndm = new Random();
         EntityManager em = emf.createEntityManager();
@@ -78,14 +77,14 @@ public class Application {
 //            rd.save(rivenditoreAutorizzatoSupplier.get());
 //        }
 
-        for (int i = 104; i < 114; i++) {
-            Rivenditore foundRive = rd.findById(i);
-            Biglietto newBiglietto = new Biglietto(
-                    Vidimazione.values()[faker.number().numberBetween(0, Vidimazione.values().length)],
-                    foundRive
-            );
-            bd.save(newBiglietto);
-        }
+//        for (int i = 104; i < 114; i++) {
+//            Rivenditore foundRive = rd.findById(i);
+//            Biglietto newBiglietto = new Biglietto(
+//                    Vidimazione.values()[faker.number().numberBetween(0, Vidimazione.values().length)],
+//                    foundRive
+//            );
+//            bd.save(newBiglietto);
+//        }
 
 
         input.close();
