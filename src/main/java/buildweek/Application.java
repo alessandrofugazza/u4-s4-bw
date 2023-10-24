@@ -1,7 +1,10 @@
 package buildweek;
 
 import buildweek.dao.*;
-import buildweek.entities.*;
+import buildweek.entities.DistributoreAutomatico;
+import buildweek.entities.RivenditoreAutorizzato;
+import buildweek.entities.Tratta;
+import buildweek.entities.Utente;
 import buildweek.enums.StatusDistributore;
 import com.github.javafaker.Faker;
 
@@ -11,7 +14,6 @@ import javax.persistence.Persistence;
 import java.time.ZoneId;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class Application {
@@ -123,16 +125,31 @@ public class Application {
 //
 //            md.save(tramSupplier);
 //        }
-        for (int i = 263; i < 268; i++) {
-            Mezzi foundMezzi = md.findById(i);
-            Periodo periodoSupplier = new Manutenzione(
-                    faker.date().past(30, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                    faker.date().future(20, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                    foundMezzi
-            );
-            ped.save(periodoSupplier);
-        }
-
+//        for (int i = ; i < ; i++) {
+//            Mezzi foundMezzi = md.findById(i);
+//            Periodo periodoSupplier = new Manutenzione(
+//                    faker.date().past(30, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                    faker.date().future(20, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                    foundMezzi
+//            );
+//            if (foundMezzi.getStatusMezzo() == StatusMezzo.MANUTENZIONE) {
+//                ped.save(periodoSupplier);
+//            }
+//
+//        }
+//        for (int i = ; i < ; i++) {
+//            Mezzi foundMezzi2 = md.findById(i);
+//            Periodo periodoSupplier2 = new Servizio(
+//                    faker.date().past(30, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                    faker.date().future(20, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                    foundMezzi2
+//            );
+//            if (foundMezzi2.getStatusMezzo() == StatusMezzo.IN_SERVIZIO) {
+//                ped.save(periodoSupplier2);
+//            }
+//
+//
+//        }
 
         input.close();
         em.close();
