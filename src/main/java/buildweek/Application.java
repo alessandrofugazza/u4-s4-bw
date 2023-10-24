@@ -1,9 +1,10 @@
 package buildweek;
 
 import buildweek.dao.*;
-import buildweek.entities.DistributoreAutomatico;
-import buildweek.entities.Utente;
+import buildweek.entities.*;
 import buildweek.enums.StatusDistributore;
+import buildweek.enums.StatusMezzo;
+import buildweek.enums.Vidimazione;
 import com.github.javafaker.Faker;
 
 import javax.persistence.EntityManager;
@@ -28,6 +29,7 @@ public class Application {
         TesseraDAO td = new TesseraDAO(em);
         RivenditoreDAO rd = new RivenditoreDAO(em);
         BigliettoDAO bd = new BigliettoDAO(em);
+        MezziDAO md = new MezziDAO(em);
 
         Supplier<Utente> userSupplier = () -> new Utente(
                 faker.name().firstName(),
@@ -69,20 +71,35 @@ public class Application {
 //            rd.save(distributoreAutomaticoSupplier.get());
 //        }
 
-//        Supplier<RivenditoreAutorizzato> rivenditoreAutorizzatoSupplier = () -> new RivenditoreAutorizzato(
-//                faker.address().cityName(),
-//                faker.rickAndMorty().character());
+        Supplier<RivenditoreAutorizzato> rivenditoreAutorizzatoSupplier = () -> new RivenditoreAutorizzato(
+                faker.address().cityName(),
+                faker.rickAndMorty().character());
 //        for (int i = 0; i < 5; i++) {
 //            rd.save(rivenditoreAutorizzatoSupplier.get());
 //        }
 
-//        for (int i = 16; i < 25; i++) {
-//            Rivenditore foundRive = rd.findById(i);
-//            Biglietto newBiglietto = new Biglietto(
-//                    Vidimazione.values()[faker.number().numberBetween(0, Vidimazione.values().length)],
-//                    foundRive
-//            );
-//            bd.save(newBiglietto);
+        for (int i = 0; i < 8; i++) {
+            Rivenditore foundRive = rd.findById(rndm.nextInt(104, 113));
+            Mezzi foundMezzo = md.findById(rndm.nextInt(144, 151));
+            Biglietto newBiglietto = new Biglietto(
+                    Vidimazione.values()[faker.number().numberBetween(0, Vidimazione.values().length)],
+                    foundRive,
+                    foundMezzo
+            );
+
+            bd.save(newBiglietto);
+        }
+        Supplier<Autobus> autobusSupplier = () -> new Autobus(
+                rndm.nextInt(25, 40),
+                StatusMezzo.values()[faker.number().numberBetween(0, StatusMezzo.values().length)]);
+
+        Supplier<Tram> tramSupplier = () -> new Tram(
+                rndm.nextInt(25, 40),
+                StatusMezzo.values()[faker.number().numberBetween(0, StatusMezzo.values().length)]);
+
+//        for (int i = 0; i < 2; i++) {
+//            md.save(autobusSupplier.get());
+//            md.save(tramSupplier.get());
 //        }
 
 

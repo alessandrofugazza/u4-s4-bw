@@ -3,9 +3,9 @@ package buildweek.entities;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
 @Table(name = "rivenditori")
-
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Rivenditore {
     @Id

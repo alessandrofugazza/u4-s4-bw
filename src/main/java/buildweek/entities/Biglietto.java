@@ -18,13 +18,45 @@ public class Biglietto {
     @ManyToOne
     @JoinColumn(name = "rivenditore_id")
     private Rivenditore rivenditore;
+    @ManyToOne
+    @JoinColumn(name = "mezzo_id")
+    private Mezzi mezzi;
 
     public Biglietto() {
     }
 
-    public Biglietto(Vidimazione vidimazione, Rivenditore rivenditore) {
+    public Biglietto(Vidimazione vidimazione, Rivenditore rivenditore, Mezzi mezzi) {
         this.vidimazione = vidimazione;
         this.rivenditore = rivenditore;
+        switch (vidimazione) {
+            case TRUE: {
+                this.mezzi = mezzi;
+                break;
+            }
+            case FALSE: {
+                this.mezzi = null;
+                break;
+            }
+        }
+
+
+    }
+
+
+    public Rivenditore getRivenditore() {
+        return rivenditore;
+    }
+
+    public void setRivenditore(Rivenditore rivenditore) {
+        this.rivenditore = rivenditore;
+    }
+
+    public Mezzi getMezzi() {
+        return mezzi;
+    }
+
+    public void setMezzi(Mezzi mezzi) {
+        this.mezzi = mezzi;
     }
 
     public long getCodiceUnivoco() {
