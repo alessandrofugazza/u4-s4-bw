@@ -9,8 +9,8 @@ public class Autobus extends Mezzi {
     public Autobus() {
     }
 
-    public Autobus(int capienza, StatusMezzo statusMezzo) {
-        super(capienza, statusMezzo);
+    public Autobus(int capienza, StatusMezzo statusMezzo, Tratta tratta) {
+        super(capienza, statusMezzo, tratta);
     }
 
     @Override
