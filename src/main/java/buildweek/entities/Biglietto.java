@@ -3,6 +3,7 @@ package buildweek.entities;
 import buildweek.enums.Vidimazione;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "biglietti")
@@ -15,6 +16,8 @@ public class Biglietto {
 
     @Enumerated(EnumType.STRING)
     private Vidimazione vidimazione;
+    @Column(name = "data_di_emissione")
+    private LocalDate dataDiEmissione;
     @ManyToOne
     @JoinColumn(name = "rivenditore_id")
     private Rivenditore rivenditore;
@@ -25,9 +28,10 @@ public class Biglietto {
     public Biglietto() {
     }
 
-    public Biglietto(Vidimazione vidimazione, Rivenditore rivenditore, Mezzi mezzi) {
+    public Biglietto(Vidimazione vidimazione, Rivenditore rivenditore, LocalDate dataDiEmissione, Mezzi mezzi) {
         this.vidimazione = vidimazione;
         this.rivenditore = rivenditore;
+        this.dataDiEmissione = dataDiEmissione;
         switch (vidimazione) {
             case TRUE: {
                 this.mezzi = mezzi;
