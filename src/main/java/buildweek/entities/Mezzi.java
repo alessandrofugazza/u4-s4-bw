@@ -4,6 +4,7 @@ import buildweek.enums.StatusMezzo;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Table(name = "mezzi_di_trasporto")
@@ -24,12 +25,31 @@ public abstract class Mezzi {
     @JoinColumn(name = "id_tratta")
     private Tratta tratta;
 
-    public Mezzi() {
+    @Column(name = "numero_tratte_eseguite")
+    private int numeroTratteEseguite;
+    @OneToMany(mappedBy = "mezzi")
+    private List<Manutenzione> manutenzioneList;
+    @OneToMany(mappedBy = "mezzi")
+    private List<Servizio> servizioList;
+
+
+    protected Mezzi() {
     }
 
     public Mezzi(int capienza, StatusMezzo statusMezzo, Tratta tratta) {
+        Random rndm = new Random();
         this.capienza = capienza;
         this.statusMezzo = statusMezzo;
+        switch (statusMezzo) {
+            case IN_SERVIZIO: {
+                this.numeroTratteEseguite = rndm.nextInt(1, 5);
+                break;
+            }
+            case MANUTENZIONE: {
+                this.numeroTratteEseguite = 0;
+                break;
+            }
+        }
         switch (statusMezzo) {
             case IN_SERVIZIO: {
                 this.tratta = tratta;
