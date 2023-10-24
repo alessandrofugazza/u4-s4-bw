@@ -20,13 +20,33 @@ public abstract class Mezzi {
     protected StatusMezzo statusMezzo;
     @OneToMany(mappedBy = "mezzi")
     private List<Biglietto> bigliettoList;
+    @OneToOne
+    @JoinColumn(name = "id_tratta")
+    private Tratta tratta;
 
     public Mezzi() {
     }
 
-    public Mezzi(int capienza, StatusMezzo statusMezzo) {
+    public Mezzi(int capienza, StatusMezzo statusMezzo, Tratta tratta) {
         this.capienza = capienza;
         this.statusMezzo = statusMezzo;
+        switch (statusMezzo) {
+            case IN_SERVIZIO: {
+                this.tratta = tratta;
+                break;
+            }
+            case MANUTENZIONE: {
+                this.tratta = null;
+            }
+        }
+    }
+
+    public Tratta getTratta() {
+        return tratta;
+    }
+
+    public void setTratta(Tratta tratta) {
+        this.tratta = tratta;
     }
 
     public long getMezzoId() {

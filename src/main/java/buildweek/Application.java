@@ -3,7 +3,6 @@ package buildweek;
 import buildweek.dao.*;
 import buildweek.entities.*;
 import buildweek.enums.StatusDistributore;
-import buildweek.enums.StatusMezzo;
 import buildweek.enums.Vidimazione;
 import com.github.javafaker.Faker;
 
@@ -30,6 +29,7 @@ public class Application {
         RivenditoreDAO rd = new RivenditoreDAO(em);
         BigliettoDAO bd = new BigliettoDAO(em);
         MezziDAO md = new MezziDAO(em);
+        TrattaDAO trd = new TrattaDAO(em);
 
         Supplier<Utente> userSupplier = () -> new Utente(
                 faker.name().firstName(),
@@ -37,12 +37,12 @@ public class Application {
                 faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         );
 
-//        for (int i = 0; i < 5; i++) {
+//        for (int i = 0; i < 8; i++) {
 //            ud.save(userSupplier.get());
 //        }
 
 
-//        for (int i = 1; i < 6; i++) {
+//        for (int i = 195; i < 203; i++) {
 //            Utente foundUsers = ud.findById(i);
 //            Tessera newTessera = new Tessera(
 //                    faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
@@ -52,7 +52,7 @@ public class Application {
 //            td.save(newTessera);
 //        }
 
-//        for (int i = 6; i < 11; i++) {
+//        for (int i = 202; i < 211; i++) {
 //
 //            Tessera foundTessera = td.findById(i);
 //            Abbonamento newAbbonamento =
@@ -67,20 +67,18 @@ public class Application {
                 faker.address().cityName(),
                 StatusDistributore.values()[faker.number().numberBetween(0, StatusDistributore.values().length)]);
 
-//        for (int i = 0; i < 5; i++) {
-//            rd.save(distributoreAutomaticoSupplier.get());
-//        }
-
         Supplier<RivenditoreAutorizzato> rivenditoreAutorizzatoSupplier = () -> new RivenditoreAutorizzato(
                 faker.address().cityName(),
                 faker.rickAndMorty().character());
-//        for (int i = 0; i < 5; i++) {
+//        for (int i = 0; i < 4; i++) {
+//            rd.save(distributoreAutomaticoSupplier.get());
 //            rd.save(rivenditoreAutorizzatoSupplier.get());
 //        }
 
+
         for (int i = 0; i < 8; i++) {
-            Rivenditore foundRive = rd.findById(rndm.nextInt(104, 113));
-            Mezzi foundMezzo = md.findById(rndm.nextInt(144, 151));
+            Rivenditore foundRive = rd.findById(rndm.nextInt(220, 227));
+            Mezzi foundMezzo = md.findById(rndm.nextInt(263, 274));
             Biglietto newBiglietto = new Biglietto(
                     Vidimazione.values()[faker.number().numberBetween(0, Vidimazione.values().length)],
                     foundRive,
@@ -89,17 +87,39 @@ public class Application {
 
             bd.save(newBiglietto);
         }
-        Supplier<Autobus> autobusSupplier = () -> new Autobus(
-                rndm.nextInt(25, 40),
-                StatusMezzo.values()[faker.number().numberBetween(0, StatusMezzo.values().length)]);
+        
 
-        Supplier<Tram> tramSupplier = () -> new Tram(
-                rndm.nextInt(25, 40),
-                StatusMezzo.values()[faker.number().numberBetween(0, StatusMezzo.values().length)]);
+        Supplier<Tratta> trattaSupplier = () -> new Tratta(
+                faker.country().capital(),
+                faker.country().capital(),
+                rndm.nextInt(0, 60));
 
-//        for (int i = 0; i < 2; i++) {
-//            md.save(autobusSupplier.get());
-//            md.save(tramSupplier.get());
+//        for (int i = 0; i < 8; i++) {
+//            trd.save(trattaSupplier.get());
+//        }
+
+
+//        for (int i = ; i < ; i++) {
+//            Tratta foundTratta = trd.findById(i);
+//
+//            Autobus autobusSupplier = new Autobus(
+//                    rndm.nextInt(25, 40),
+//                    StatusMezzo.values()[faker.number().numberBetween(0, StatusMezzo.values().length)], foundTratta
+//
+//
+//            );
+//
+//            md.save(autobusSupplier);
+//        }
+
+//        for (int i = ; i < ; i++) {
+//            Tram tramSupplier = new Tram(
+//                    rndm.nextInt(25, 40),
+//                    StatusMezzo.values()[faker.number().numberBetween(0, StatusMezzo.values().length)], foundTratta
+//
+//            );
+//
+//            md.save(tramSupplier);
 //        }
 
 
