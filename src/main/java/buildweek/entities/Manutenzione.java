@@ -1,17 +1,15 @@
 package buildweek.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "manutenzioni")
 public class Manutenzione extends Periodo {
-
-    private LocalDate dataInizioManutenione;
-    private LocalDate dataFineManutenione;
+    @Column(name = "data_inizio_manutenzione")
+    private LocalDate dataInizioManutenzione;
+    @Column(name = "data_fine_manutenzione")
+    private LocalDate dataFineManutenzione;
     @ManyToOne
     @JoinColumn(name = "mezzo_id")
     private Mezzi mezzi;
@@ -19,9 +17,9 @@ public class Manutenzione extends Periodo {
     public Manutenzione() {
     }
 
-    public Manutenzione(LocalDate dataInizioManutenione, LocalDate dataFineManutenione, Mezzi mezzi) {
-        this.dataInizioManutenione = dataInizioManutenione;
-        this.dataFineManutenione = dataFineManutenione;
+    public Manutenzione(LocalDate dataInizioManutenzione, LocalDate dataFineManutenzione, Mezzi mezzi) {
+        this.dataInizioManutenzione = dataInizioManutenzione;
+        this.dataFineManutenzione = dataFineManutenzione;
         switch (mezzi.getStatusMezzo()) {
             case MANUTENZIONE: {
                 this.mezzi = mezzi;
@@ -35,27 +33,36 @@ public class Manutenzione extends Periodo {
 
     }
 
-    public LocalDate getDataInizioManutenione() {
-        return dataInizioManutenione;
+    public LocalDate getDataInizioManutenzione() {
+        return dataInizioManutenzione;
     }
 
-    public void setDataInizioManutenione(LocalDate dataInizioManutenione) {
-        this.dataInizioManutenione = dataInizioManutenione;
+    public void setDataInizioManutenzione(LocalDate dataInizioManutenzione) {
+        this.dataInizioManutenzione = dataInizioManutenzione;
     }
 
-    public LocalDate getDataFineManutenione() {
-        return dataFineManutenione;
+    public LocalDate getDataFineManutenzione() {
+        return dataFineManutenzione;
     }
 
-    public void setDataFineManutenione(LocalDate dataFineManutenione) {
-        this.dataFineManutenione = dataFineManutenione;
+    public void setDataFineManutenzione(LocalDate dataFineManutenzione) {
+        this.dataFineManutenzione = dataFineManutenzione;
+    }
+
+    public Mezzi getMezzi() {
+        return mezzi;
+    }
+
+    public void setMezzi(Mezzi mezzi) {
+        this.mezzi = mezzi;
     }
 
     @Override
     public String toString() {
         return "Manutenzione{" +
-                "dataInizioManutenione=" + dataInizioManutenione +
-                ", dataFineManutenione=" + dataFineManutenione +
+                "dataInizioManutenzione=" + dataInizioManutenzione +
+                ", dataFineManutenzione=" + dataFineManutenzione +
+                ", mezzi=" + mezzi +
                 ", idPeriodo=" + idPeriodo +
                 '}';
     }

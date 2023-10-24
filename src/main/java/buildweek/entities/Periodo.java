@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "periodi")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "status")
 public abstract class Periodo {
     @Id
     @GeneratedValue

@@ -1,16 +1,14 @@
 package buildweek.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "servizi")
 public class Servizio extends Periodo {
-
+    @Column(name = "data_inizio_servizio")
     private LocalDate dataInizioServizio;
+    @Column(name = "data_presunta_fine_servizio")
     private LocalDate dataPresuntaFineServizio;
 
     @ManyToOne
@@ -43,12 +41,20 @@ public class Servizio extends Periodo {
         this.dataInizioServizio = dataInizioServizio;
     }
 
-    public LocalDate dataPresuntaFineServizio() {
+    public LocalDate getDataPresuntaFineServizio() {
         return dataPresuntaFineServizio;
     }
 
-    public void dataPresuntaFineServizio(LocalDate dataFineServizio) {
+    public void setDataPresuntaFineServizio(LocalDate dataPresuntaFineServizio) {
         this.dataPresuntaFineServizio = dataPresuntaFineServizio;
+    }
+
+    public Mezzi getMezzi() {
+        return mezzi;
+    }
+
+    public void setMezzi(Mezzi mezzi) {
+        this.mezzi = mezzi;
     }
 
     @Override
@@ -56,6 +62,8 @@ public class Servizio extends Periodo {
         return "Servizio{" +
                 "dataInizioServizio=" + dataInizioServizio +
                 ", dataPresuntaFineServizio=" + dataPresuntaFineServizio +
+                ", mezzi=" + mezzi +
+                ", idPeriodo=" + idPeriodo +
                 '}';
     }
 }
