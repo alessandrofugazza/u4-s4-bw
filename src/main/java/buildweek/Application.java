@@ -8,7 +8,6 @@ import com.github.javafaker.Faker;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
@@ -42,7 +41,7 @@ public class Application {
 
         //***************** STEP 1 CREARE UTENTI ************************
 
-//        for (int i = 0; i < 8; i++) {
+//        for (int i = 0; i < 2; i++) {
 //            ud.save(userSupplier.get());
 //        }
 
@@ -185,7 +184,7 @@ public class Application {
         //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
         //ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
 
-        em.getTransaction().begin();
+        /*em.getTransaction().begin();
         Query deleteQuery = em.createNamedQuery("deleteUserById");
         deleteQuery.setParameter("userId", Long.parseLong("321"));
         int deletedCount = deleteQuery.executeUpdate();
@@ -195,8 +194,11 @@ public class Application {
             System.out.println("Utente eliminato con successo.");
         } else {
             System.out.println("Nessun utente trovato con l'ID specificato.");
-        }
+        }*/
 
+
+        //deleteUserById
+        //ud.deleteUserById(321);
 
         //getTesseraByNumber
         List<Tessera> t1 = td.getTesseraByNumber(327);

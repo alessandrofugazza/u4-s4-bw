@@ -26,8 +26,7 @@ public class Tessera {
 
     @Column(name = "data_odierna_tessera")
     private LocalDate dataOdiernaTessera;
-    @OneToOne
-    @JoinColumn(name = "id_utente")
+    @OneToOne(mappedBy = "tessera", cascade = CascadeType.REMOVE)
     private Utente utente;
 
     @OneToOne(mappedBy = "tessera")
