@@ -4,6 +4,8 @@ import buildweek.entities.Tessera;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class TesseraDAO {
     private final EntityManager em;
@@ -48,4 +50,27 @@ public class TesseraDAO {
         em.refresh(tessera);
         System.out.println("La tessera e' stata refreshata");
     }
+
+    public List<Tessera> getTesseraByNumber(int number) {
+        TypedQuery<Tessera> getTessera = em.createNamedQuery("getTesseraByNumber", Tessera.class);
+        getTessera.setParameter("number", (long) number);
+        return getTessera.getResultList();
+    }
+
+    public List<Tessera> getTesseraByIdUser(int userId) {
+        TypedQuery<Tessera> getTessera = em.createNamedQuery("getTesseraByIdUser", Tessera.class);
+        getTessera.setParameter("userId", (long) userId);
+        return getTessera.getResultList();
+    }
+
+    public List<Tessera> getTessereScadute() {
+        TypedQuery<Tessera> getTessere = em.createNamedQuery("getTessereScadute", Tessera.class);
+        return getTessere.getResultList();
+    }
+
+    public List<Tessera> getTessereInCorso() {
+        TypedQuery<Tessera> getTessere = em.createNamedQuery("getTessereInCorso", Tessera.class);
+        return getTessere.getResultList();
+    }
+
 }

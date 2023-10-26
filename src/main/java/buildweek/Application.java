@@ -8,6 +8,8 @@ import com.github.javafaker.Faker;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
@@ -177,20 +179,41 @@ public class Application {
 
         //PERIODO
 
-        //List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
-        //p1.forEach(elem -> System.out.println(elem));
+        List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
+        //p1.forEach(System.out::println);
 
         //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
         //ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
 
-        //Rivenditore
+        em.getTransaction().begin();
+        Query deleteQuery = em.createNamedQuery("deleteUserById");
+        deleteQuery.setParameter("userId", Long.parseLong("321"));
+        int deletedCount = deleteQuery.executeUpdate();
+        em.getTransaction().commit();
 
-        //List<Rivenditore> r1 = rd.getMachineResellerByStatusAttivo();
-        //r1.forEach(elem -> System.out.println(elem));
+        if (deletedCount > 0) {
+            System.out.println("Utente eliminato con successo.");
+        } else {
+            System.out.println("Nessun utente trovato con l'ID specificato.");
+        }
 
-        //Mezzi
-        List<Mezzi> m1 = md.getMezziByStatusInServizio();
-        m1.forEach(elem -> System.out.println(elem));
+
+        //getTesseraByNumber
+        List<Tessera> t1 = td.getTesseraByNumber(327);
+        //t1.forEach(System.out::println);
+
+        //getTesseraByIdUser
+        List<Tessera> t2 = td.getTesseraByIdUser(314);
+        //t2.forEach(System.out::println);
+
+
+        //getTessereScadute
+        List<Tessera> t3 = td.getTessereScadute();
+        //t3.forEach(System.out::println);
+
+        //getTessereInCorso
+        List<Tessera> t4 = td.getTessereInCorso();
+        //t4.forEach(System.out::println);
 
 
         input.close();
