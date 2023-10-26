@@ -2,7 +2,9 @@ package buildweek;
 
 import buildweek.dao.*;
 import buildweek.entities.*;
+import buildweek.enums.DurataAbbonamento;
 import buildweek.enums.StatusDistributore;
+import buildweek.enums.Vidimazione;
 import com.github.javafaker.Faker;
 
 import javax.persistence.EntityManager;
@@ -183,35 +185,164 @@ public class Application {
 
         //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
         //ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
-        
+
 
         //deleteUserById
         //ud.deleteUserById(321);
 
         //getTesseraByNumber
-        List<Tessera> t1 = td.getTesseraByNumber(327);
+        //List<Tessera> t1 = td.getTesseraByNumber(327);
         //t1.forEach(System.out::println);
 
         //getTesseraByIdUser
-        List<Tessera> t2 = td.getTesseraByIdUser(314);
+        //List<Tessera> t2 = td.getTesseraByIdUser(314);
         //t2.forEach(System.out::println);
 
 
         //getTessereScadute
-        List<Tessera> t3 = td.getTessereScadute();
+        //List<Tessera> t3 = td.getTessereScadute();
         //t3.forEach(System.out::println);
 
         //getTessereInCorso
-        List<Tessera> t4 = td.getTessereInCorso();
-        //t4.forEach(System.out::println);
+        //List<Tessera> t3 = td.getTessereInCorso();
+        //t3.forEach(System.out::println);
 
         List<Mezzi> m1 = md.getMezziByCapienzaMoreThen20();
-        m1.forEach(System.out::println);
+        // m1.forEach(System.out::println);
 
+        loop:
+        while (true) {
+            try {
+                System.out.println("Benvenuto, premi 1 se sei un ADMIN, 2 se sei uno USER, 0 per uscire ");
+                int choose = Integer.parseInt(input.nextLine());
+                if (choose == 0) {
+                    break loop;
+                }
+                switch (choose) {
+                    case 1: {
+                        System.out.println("Benvenuto Admin");
+                        System.out.println("Cosa vuoi fare?");
+                        System.out.println("""
+                                1: Cerca uno User tramite Id,
+                                2: Elimina uno User,
+                                3: Cerca una tessera tramite id,
+                                4: Stampa una lista di tutte le tessere scadute,
+                                5: Stampa una lista di tutte le tessere in corso,
+                                6: Cerca una abbonamento tramite numero tessera,
+                                7: Cerca una abbonamento per durata,
+                                8: Stampa una lista di abbonamenti scaduti,
+                                9: Stampa una lista di abbonamenti in corso,
+                                10: Cerca biglietto per vidimazione,
+                                11: Cerca biglietto per id del mezzo,
+                                12: Stampa una lista di mezzi in manutenzione,
+                                13: Stampa una lista di mezzi in servizio,
+                                \s""");
+                        int choose2 = Integer.parseInt(input.nextLine());
+                        switch (choose2) {
+                            case 1: {
+                                System.out.println("Inserisci l'id dell'utente");
+                                int idUtente = Integer.parseInt(input.nextLine());
+                                List<Utente> u1 = ud.getUserBYId(idUtente);
+                                u1.forEach(System.out::println);
+                                break;
+                            }
+                            case 2: {
+                                System.out.println("Inserisci l'id dell'utente da eliminare");
+                                int idUtente = Integer.parseInt(input.nextLine());
+                                ud.deleteUserById(idUtente);
+                                break;
+                            }
+                            case 3: {
+                                System.out.println("Inserisci l'id della tessera");
+                                int idTessera = Integer.parseInt(input.nextLine());
+                                List<Tessera> t1 = td.getTesseraByNumber(idTessera);
+                                t1.forEach(System.out::println);
+                                break;
+                            }
+                            case 4: {
+                                List<Tessera> t2 = td.getTessereScadute();
+                                t2.forEach(System.out::println);
+                                break;
+                            }
+                            case 5: {
+                                List<Tessera> t3 = td.getTessereInCorso();
+                                t3.forEach(System.out::println);
+                                break;
+                            }
+                            case 6: {
+                                System.out.println("Inserisci l'id dell'abbonamento");
+                                int idAbbonamento = Integer.parseInt(input.nextLine());
+                                Abbonamento a1 = ad.findById(idAbbonamento);
+                                System.out.println(a1);
+                                break;
+                            }
+                            case 7: {
+                                System.out.println("1: SETTIMANALI, 2: MENSILI");
+                                int choose3 = Integer.parseInt(input.nextLine());
+                                if (choose3 == 1) {
+                                    ad.getAbbonamentiByDurata(DurataAbbonamento.SETTIMANALE).forEach(System.out::println);
+                                    break;
+                                } else {
+                                    ad.getAbbonamentiByDurata(DurataAbbonamento.MENSILE).forEach(System.out::println);
+                                    break;
+                                }
+                            }
+                            case 8: {
+                                ad.getAbbonamentiScaduti().forEach(System.out::println);
+                                break;
+                            }
+                            case 9: {
+                                ad.getAbbonamentiInCorso().forEach(System.out::println);
+                                break;
+                            }
+                            case 10: {
+                                System.out.println("1: VIDIMATI, 2: NON-VIDIMATI");
+                                int choose3 = Integer.parseInt(input.nextLine());
+                                if (choose3 == 1) {
+                                    bd.getBigliettiVidimati(Vidimazione.TRUE).forEach(System.out::println);
+                                    break;
+                                } else {
+                                    bd.getBigliettiVidimati(Vidimazione.FALSE).forEach(System.out::println);
+                                    break;
+                                }
+                            }
+                            case 11: {
+                                System.out.println("Inserisci l'id del mezzo");
+                                int idMezzo = Integer.parseInt(input.nextLine());
+                                List<Biglietto> b1 = bd.getByMezzo(idMezzo);
+                                b1.forEach(System.out::println);
+                                break;
+                            }
+                            case 12: {
+                                md.getMezziByStatusManutenzione().forEach(System.out::println);
+                                break;
+                            }
+                            case 13: {
+                                md.getMezziByStatusInServizio().forEach(System.out::println);
+                                break;
+                            }
+                        }
+                    }
+                    case 2: {
+                        
+                    }
+                }
+                break;
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
 
+        }
         input.close();
         em.close();
         emf.close();
     }
 }
+
+
+
+
+
+
+
 
