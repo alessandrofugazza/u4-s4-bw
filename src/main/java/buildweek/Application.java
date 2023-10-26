@@ -177,12 +177,34 @@ public class Application {
 //        u3.forEach(elem -> System.out.println(elem));
 
         //PERIODO
-        
+
         List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
-        p1.forEach(elem -> System.out.println(elem));
+        //p1.forEach(System.out::println);
 
         //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
-        ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
+        //ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
+
+        /*em.getTransaction().begin();
+        Query deleteQuery = em.createNamedQuery("deleteUserById");
+        deleteQuery.setParameter("userId", Long.parseLong("321"));
+        int deletedCount = deleteQuery.executeUpdate();
+        em.getTransaction().commit();
+
+        if (deletedCount > 0) {
+            System.out.println("Utente eliminato con successo.");
+        } else {
+            System.out.println("Nessun utente trovato con l'ID specificato.");
+        }*/
+
+
+        //getTesseraByNumber
+        List<Tessera> t1 = td.getTesseraByNumber(327);
+        t1.forEach(System.out::println);
+
+        //
+        List<Tessera> t2 = td.getTesseraByIdUser(314);
+        t2.forEach(System.out::println);
+
 
         input.close();
         em.close();

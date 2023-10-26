@@ -5,6 +5,9 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "tessere")
+@NamedQueries({@NamedQuery(name = "getTesseraByNumber", query = "SELECT t FROM Tessera t WHERE t.numeroTessera = :number"),
+        @NamedQuery(name = "getTesseraByIdUser", query = "SELECT t FROM Tessera t WHERE t.utente.userId = :userId")
+})
 public class Tessera {
 
     @Id
