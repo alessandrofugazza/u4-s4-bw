@@ -4,6 +4,8 @@ import buildweek.entities.Rivenditore;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class RivenditoreDAO {
     private final EntityManager em;
@@ -48,4 +50,35 @@ public class RivenditoreDAO {
         em.refresh(rivenditore);
         System.out.println("Il rivenditore e' stato refreshato");
     }
+
+    public List<Rivenditore> getResellerByName(String name) {
+        TypedQuery<Rivenditore> getReseller = em.createNamedQuery("getResellerByName", Rivenditore.class);
+        getReseller.setParameter("name", name);
+        return getReseller.getResultList();
+    }
+
+    public List<Rivenditore> getMachineReseller() {
+        TypedQuery<Rivenditore> getReseller = em.createNamedQuery("getMachineReseller", Rivenditore.class);
+        return getReseller.getResultList();
+
+    }
+
+    public List<Rivenditore> getUmanReseller() {
+        TypedQuery<Rivenditore> getReseller = em.createNamedQuery("getUmanReseller", Rivenditore.class);
+        return getReseller.getResultList();
+
+    }
+
+    public List<Rivenditore> getMachineResellerByStatusAttivo() {
+        TypedQuery<Rivenditore> getReseller = em.createNamedQuery("getMachineResellerByStatusAttivo", Rivenditore.class);
+        return getReseller.getResultList();
+
+    }
+
+    public List<Rivenditore> getMachineResellerByStatusFuoriServizio() {
+        TypedQuery<Rivenditore> getReseller = em.createNamedQuery("getMachineResellerByStatusFuoriServizio", Rivenditore.class);
+        return getReseller.getResultList();
+    }
+
+
 }

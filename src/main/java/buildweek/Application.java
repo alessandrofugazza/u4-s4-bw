@@ -8,7 +8,6 @@ import com.github.javafaker.Faker;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
@@ -177,12 +176,22 @@ public class Application {
 //        u3.forEach(elem -> System.out.println(elem));
 
         //PERIODO
-        
-        List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
-        p1.forEach(elem -> System.out.println(elem));
+
+        //List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
+        //p1.forEach(elem -> System.out.println(elem));
 
         //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
-        ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
+        //ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
+
+        //Rivenditore
+
+        //List<Rivenditore> r1 = rd.getMachineResellerByStatusAttivo();
+        //r1.forEach(elem -> System.out.println(elem));
+
+        //Mezzi
+        List<Mezzi> m1 = md.getMezziByStatusInServizio();
+        m1.forEach(elem -> System.out.println(elem));
+
 
         input.close();
         em.close();

@@ -19,6 +19,8 @@ public abstract class Mezzi {
     protected int capienza;
     @Enumerated(EnumType.STRING)
     protected StatusMezzo statusMezzo;
+    @Column(insertable = false, updatable = false)
+    private String tipologia_mezzo;
     @OneToMany(mappedBy = "mezzi")
     private List<Biglietto> bigliettoList;
     @OneToOne
