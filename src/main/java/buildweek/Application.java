@@ -1,17 +1,16 @@
 package buildweek;
 
 import buildweek.dao.*;
-import buildweek.entities.DistributoreAutomatico;
-import buildweek.entities.RivenditoreAutorizzato;
-import buildweek.entities.Tratta;
-import buildweek.entities.Utente;
+import buildweek.entities.*;
 import buildweek.enums.StatusDistributore;
 import com.github.javafaker.Faker;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.function.Supplier;
@@ -134,7 +133,11 @@ public class Application {
 
         //***************** STEP 8 CREARE PERIODI ************************
 
-//        for (int i = 350; i < 358; i++) {
+//        Mezzi m1 = md.findById(351);
+//        m1.setStatusMezzo(StatusMezzo.IN_SERVIZIO);
+//        md.save(m1);
+//
+//        for (int i = 351; i < 352; i++) {
 //            Mezzi foundMezzi = md.findById(i);
 //            Periodo periodoSupplier = new Manutenzione(
 //                    faker.date().past(30, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
@@ -145,7 +148,7 @@ public class Application {
 //                ped.save(periodoSupplier);
 //            }
 //        }
-//        for (int i = 350; i < 358; i++) {
+//        for (int i = 351; i < 352; i++) {
 //            Mezzi foundMezzi2 = md.findById(i);
 //            Periodo periodoSupplier2 = new Servizio(
 //                    faker.date().past(30, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
@@ -155,11 +158,32 @@ public class Application {
 //            if (foundMezzi2.getStatusMezzo() == StatusMezzo.IN_SERVIZIO) {
 //                ped.save(periodoSupplier2);
 //            }
-//        }
 
+
+        //*************************** QUERY TEST *********************************
+        //UTENTE
+        // GET USER BY ID
+        List<Utente> u1 = ud.getUserBYId(314);
+        u1.forEach(elem -> System.out.println(elem));
+
+        // GET USER BY FIRSTNAME
+        List<Utente> u2 = ud.getUserBYName("taryn");
+        u2.forEach(elem -> System.out.println(elem));
+
+        // GET USER BY LASTNAME
+        List<Utente> u3 = ud.getUserBYLastName("lockman");
+        u3.forEach(elem -> System.out.println(elem));
+
+        //
+        List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
+        p1.forEach(elem -> System.out.println(elem));
+
+        //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
+        ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
 
         input.close();
         em.close();
         emf.close();
     }
 }
+
