@@ -22,7 +22,8 @@ public class Utente {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne(mappedBy = "utente", cascade = CascadeType.REMOVE)
+    @OneToOne
+    @JoinColumn(name = "numero_tessera")
     private Tessera tessera;
 
 

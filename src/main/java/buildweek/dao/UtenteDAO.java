@@ -4,6 +4,7 @@ import buildweek.entities.Utente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -67,5 +68,18 @@ public class UtenteDAO {
         TypedQuery<Utente> getUser = em.createNamedQuery("getUserBYLastName", Utente.class);
         getUser.setParameter("lastName", lastName);
         return getUser.getResultList();
+    }
+
+    public void deleteUserById(int userId) {
+        em.getTransaction().begin();
+        Query deleteQuery = em.createNamedQuery("deleteUserById");
+        deleteQuery.setParameter("userId", Long.parseLong("321"));
+        int deletedCount = deleteQuery.executeUpdate();
+        em.getTransaction().commit();
+        if (deletedCount > 0) {
+            System.out.println("Utente eliminato con successo.");
+        } else {
+            System.out.println("Nessun utente trovato con l'ID specificato.");
+        }
     }
 }
