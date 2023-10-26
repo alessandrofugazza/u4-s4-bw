@@ -63,4 +63,14 @@ public class TesseraDAO {
         return getTessera.getResultList();
     }
 
+    public List<Tessera> getTessereScadute() {
+        TypedQuery<Tessera> getTessere = em.createNamedQuery("getTessereScadute", Tessera.class);
+        return getTessere.getResultList();
+    }
+
+    public List<Tessera> getTessereInCorso() {
+        TypedQuery<Tessera> getTessere = em.createNamedQuery("getTessereInCorso", Tessera.class);
+        return getTessere.getResultList();
+    }
+
 }

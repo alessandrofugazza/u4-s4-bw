@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @NamedQueries({@NamedQuery(name = "getUserBYId", query = "SELECT u FROM Utente u WHERE u.userId = :userId"),
         @NamedQuery(name = "getUserBYName", query = "SELECT u FROM Utente u WHERE LOWER(u.firstName) = LOWER(:name)"),
         @NamedQuery(name = "getUserBYLastName", query = "SELECT u FROM Utente u WHERE LOWER(u.lastName) = LOWER(:lastName)"),
-        // @NamedQuery(name = "deleteUserById", query = "DELETE FROM Utente u WHERE u.userId = :userId")
+        @NamedQuery(name = "deleteUserById", query = "DELETE FROM Utente u WHERE u.userId = :userId")
 })
 public class Utente {
     @Id

@@ -6,9 +6,12 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tessere")
 @NamedQueries({@NamedQuery(name = "getTesseraByNumber", query = "SELECT t FROM Tessera t WHERE t.numeroTessera = :number"),
-        @NamedQuery(name = "getTesseraByIdUser", query = "SELECT t FROM Tessera t WHERE t.utente.userId = :userId")
+        @NamedQuery(name = "getTesseraByIdUser", query = "SELECT t FROM Tessera t WHERE t.utente.userId = :userId"),
+        @NamedQuery(name = "getTessereScadute", query = "SELECT t FROM Tessera t WHERE t.dataOdiernaTessera > dataDiScandenzaTessera"),
+        @NamedQuery(name = "getTessereInCorso", query = "SELECT t FROM Tessera t WHERE t.dataOdiernaTessera <= dataDiScandenzaTessera")
 })
 public class Tessera {
+
 
     @Id
     @GeneratedValue
