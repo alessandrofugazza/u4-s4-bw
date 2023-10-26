@@ -15,12 +15,13 @@ public class Servizio extends Periodo {
     @JoinColumn(name = "mezzo_id")
     private Mezzi mezzi;
 
+
     public Servizio() {
     }
 
     public Servizio(LocalDate dataInizioServizio, LocalDate dataPresuntaFineServizio, Mezzi mezzi) {
         this.dataInizioServizio = dataInizioServizio;
-        this.dataPresuntaFineServizio = dataPresuntaFineServizio;
+        this.dataPresuntaFineServizio = dataInizioServizio.plusMonths(2);
         switch (mezzi.getStatusMezzo()) {
             case IN_SERVIZIO: {
                 this.mezzi = mezzi;
