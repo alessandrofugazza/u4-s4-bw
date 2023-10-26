@@ -7,6 +7,11 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "biglietti")
+@NamedQueries({
+        @NamedQuery(name = "getBigliettiVidimati", query = "SELECT b FROM Biglietto b WHERE b.vidimazione = :vidimazione"),
+        @NamedQuery(name = "getByMezzo", query = "SELECT b FROM Biglietto b WHERE b.mezzi.mezzoId = :mezzoid"),
+        @NamedQuery(name = "getByRivenditore", query = "SELECT b FROM Biglietto b WHERE b.rivenditore.rivenditoreId = :rivenditoreid")
+})
 public class Biglietto {
 
     @Id

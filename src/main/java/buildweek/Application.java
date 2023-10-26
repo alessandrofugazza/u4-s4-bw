@@ -1,16 +1,17 @@
 package buildweek;
 
 import buildweek.dao.*;
-import buildweek.entities.*;
+import buildweek.entities.DistributoreAutomatico;
+import buildweek.entities.RivenditoreAutorizzato;
+import buildweek.entities.Tratta;
+import buildweek.entities.Utente;
 import buildweek.enums.StatusDistributore;
 import com.github.javafaker.Faker;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.function.Supplier;
@@ -177,12 +178,21 @@ public class Application {
 //        u3.forEach(elem -> System.out.println(elem));
 
         //PERIODO
-        
-        List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
-        p1.forEach(elem -> System.out.println(elem));
+
+//        List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
+//        p1.forEach(elem -> System.out.println(elem));
 
         //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
-        ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
+//        ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
+
+//        System.out.println(ad.findById(330));
+//        ad.getAbbonamentiByDurata(DurataAbbonamento.MENSILE).forEach(a -> System.out.println(a));
+//        ad.getAbbonamentiScaduti().forEach(System.out::println);
+//        ad.getAbbonamentiInCorso().forEach(System.out::println);
+//        System.out.println();
+//        bd.getBigliettiVidimati(Vidimazione.FALSE).forEach(System.out::println);
+//        bd.getByMezzo(355).forEach(System.out::println);
+//        bd.getByRivenditore(340).forEach(System.out::println);
 
         input.close();
         em.close();

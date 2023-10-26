@@ -1,9 +1,12 @@
 package buildweek.dao;
 
 import buildweek.entities.Biglietto;
+import buildweek.enums.Vidimazione;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class BigliettoDAO {
     private final EntityManager em;
@@ -47,5 +50,23 @@ public class BigliettoDAO {
     public void refresh(Biglietto biglietto) {
         em.refresh(biglietto);
         System.out.println("Il biglietto e' stato refreshato");
+    }
+
+    public List<Biglietto> getBigliettiVidimati(Vidimazione vidimazione) {
+        TypedQuery<Biglietto> getBiglietti = em.createNamedQuery("getBigliettiVidimati", Biglietto.class);
+        getBiglietti.setParameter("vidimazione", vidimazione);
+        return getBiglietti.getResultList();
+    }
+
+    public List<Biglietto> getByMezzo(long id) {
+        TypedQuery<Biglietto> getBiglietti = em.createNamedQuery("getByMezzo", Biglietto.class);
+        getBiglietti.setParameter("mezzoid", id);
+        return getBiglietti.getResultList();
+    }
+
+    public List<Biglietto> getByRivenditore(long id) {
+        TypedQuery<Biglietto> getBiglietti = em.createNamedQuery("getByRivenditore", Biglietto.class);
+        getBiglietti.setParameter("rivenditoreid", id);
+        return getBiglietti.getResultList();
     }
 }

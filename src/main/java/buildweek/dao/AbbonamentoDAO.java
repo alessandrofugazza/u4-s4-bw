@@ -1,9 +1,12 @@
 package buildweek.dao;
 
 import buildweek.entities.Abbonamento;
+import buildweek.enums.DurataAbbonamento;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class AbbonamentoDAO {
     private final EntityManager em;
@@ -47,5 +50,27 @@ public class AbbonamentoDAO {
     public void refresh(Abbonamento abbonamento) {
         em.refresh(abbonamento);
         System.out.println("L'abbonamento e' stato refreshato");
+    }
+
+//    public Abbonamento getAbbonamentoById(long codiceAbbonamento) {
+//        TypedQuery<Abbonamento> getAbbonamento = em.createNamedQuery("getAbbonamentoById", Abbonamento.class);
+//        getAbbonamento.setParameter("codiceAbbonamento", codiceAbbonamento);
+//        return getAbbonamento.getSingleResult();
+//    }
+
+    public List<Abbonamento> getAbbonamentiByDurata(DurataAbbonamento durata) {
+        TypedQuery<Abbonamento> getAbbonamento = em.createNamedQuery("getAbbonamentiByDurata", Abbonamento.class);
+        getAbbonamento.setParameter("durataAbbonamento", durata);
+        return getAbbonamento.getResultList();
+    }
+
+    public List<Abbonamento> getAbbonamentiScaduti() {
+        TypedQuery<Abbonamento> getAbbonamento = em.createNamedQuery("getAbbonamentiScaduti", Abbonamento.class);
+        return getAbbonamento.getResultList();
+    }
+
+    public List<Abbonamento> getAbbonamentiInCorso() {
+        TypedQuery<Abbonamento> getAbbonamento = em.createNamedQuery("getAbbonamentiInCorso", Abbonamento.class);
+        return getAbbonamento.getResultList();
     }
 }

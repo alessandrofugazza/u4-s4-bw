@@ -7,6 +7,11 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "abbonamenti")
+@NamedQueries({
+        @NamedQuery(name = "getAbbonamentiByDurata", query = "SELECT a FROM Abbonamento a WHERE a.durataAbbonamento = :durataAbbonamento"),
+        @NamedQuery(name = "getAbbonamentiScaduti", query = "SELECT a FROM Abbonamento a WHERE a.dataOdiernaAbbonamento > dataDiScandenzaAbbonamento"),
+        @NamedQuery(name = "getAbbonamentiInCorso", query = "SELECT a FROM Abbonamento a WHERE a.dataOdiernaAbbonamento <= dataDiScandenzaAbbonamento")
+})
 public class Abbonamento {
 
     @Id
