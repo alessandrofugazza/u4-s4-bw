@@ -52,44 +52,44 @@ public class MezziDAO {
     }
 
     public List<Mezzi> getMezziByTypeAutobus() {
-        TypedQuery<Mezzi> getMezzi = em.createQuery("SELECT m FROM Mezzi m WHERE m.tipologia_mezzo = 'Autobus'", Mezzi.class);
+        TypedQuery<Mezzi> getMezzi = em.createNamedQuery("getMezziByTypeAutobus", Mezzi.class);
         return getMezzi.getResultList();
     }
 
     public List<Mezzi> getMezziByTypeTram() {
-        TypedQuery<Mezzi> getMezzi = em.createQuery("SELECT m FROM Mezzi m WHERE m.tipologia_mezzo = 'Tram'", Mezzi.class);
+        TypedQuery<Mezzi> getMezzi = em.createNamedQuery("getMezziByTypeTram", Mezzi.class);
         return getMezzi.getResultList();
     }
 
     public List<Mezzi> getMezziById(long id) {
-        TypedQuery<Mezzi> getMezzi = em.createQuery("SELECT m FROM Mezzi m WHERE m.mezzoId = :id", Mezzi.class);
+        TypedQuery<Mezzi> getMezzi = em.createNamedQuery("getMezziById", Mezzi.class);
         getMezzi.setParameter("id", id);
         return getMezzi.getResultList();
     }
 
     public List<Mezzi> getMezziByCapienzaLessThen30() {
-        TypedQuery<Mezzi> getMezzi = em.createQuery("SELECT m FROM Mezzi m WHERE m.capienza < 30", Mezzi.class);
+        TypedQuery<Mezzi> getMezzi = em.createNamedQuery("getMezziByCapienzaLessThen30", Mezzi.class);
         return getMezzi.getResultList();
     }
 
     public List<Mezzi> getMezziByCapienzaMoreThen20() {
-        TypedQuery<Mezzi> getMezzi = em.createQuery("SELECT m FROM Mezzi m WHERE m.capienza > 20", Mezzi.class);
+        TypedQuery<Mezzi> getMezzi = em.createNamedQuery("getMezziByCapienzaMoreThen20", Mezzi.class);
         return getMezzi.getResultList();
     }
 
     public List<Mezzi> getMezziByTratta(long trattaId) {
-        TypedQuery<Mezzi> getMezzi = em.createQuery("SELECT m FROM Mezzi m WHERE m.tratta.id = :trattaId", Mezzi.class);
+        TypedQuery<Mezzi> getMezzi = em.createNamedQuery("getMezziByTratta", Mezzi.class);
         getMezzi.setParameter("trattaId", trattaId);
         return getMezzi.getResultList();
     }
 
     public List<Mezzi> getMezziByStatusManutenzione() {
-        TypedQuery<Mezzi> getMezzi = em.createQuery("SELECT m FROM Mezzi m WHERE LOWER(m.statusMezzo) = LOWER('Manutenzione')", Mezzi.class);
+        TypedQuery<Mezzi> getMezzi = em.createNamedQuery("getMezziByStatusManutenzione", Mezzi.class);
         return getMezzi.getResultList();
     }
 
     public List<Mezzi> getMezziByStatusInServizio() {
-        TypedQuery<Mezzi> getMezzi = em.createQuery("SELECT m FROM Mezzi m WHERE LOWER(m.statusMezzo) = LOWER('In_Servizio')", Mezzi.class);
+        TypedQuery<Mezzi> getMezzi = em.createNamedQuery("getMezziByStatusInServizio", Mezzi.class);
         return getMezzi.getResultList();
     }
 

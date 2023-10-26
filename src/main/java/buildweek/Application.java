@@ -185,17 +185,17 @@ public class Application {
         //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
         //ped.findPeriodoByDataFineAndUpdateDataFine(LocalDate.of(2023, 12, 13), null);
 
-        em.getTransaction().begin();
-        Query deleteQuery = em.createNamedQuery("deleteUserById");
-        deleteQuery.setParameter("userId", Long.parseLong("321"));
-        int deletedCount = deleteQuery.executeUpdate();
-        em.getTransaction().commit();
-
-        if (deletedCount > 0) {
-            System.out.println("Utente eliminato con successo.");
-        } else {
-            System.out.println("Nessun utente trovato con l'ID specificato.");
-        }
+//        em.getTransaction().begin();
+//        Query deleteQuery = em.createNamedQuery("deleteUserById");
+//        deleteQuery.setParameter("userId", Long.parseLong("321"));
+//        int deletedCount = deleteQuery.executeUpdate();
+//        em.getTransaction().commit();
+//
+//        if (deletedCount > 0) {
+//            System.out.println("Utente eliminato con successo.");
+//        } else {
+//            System.out.println("Nessun utente trovato con l'ID specificato.");
+//        }
 
 
         //getTesseraByNumber
@@ -214,6 +214,9 @@ public class Application {
         //getTessereInCorso
         List<Tessera> t4 = td.getTessereInCorso();
         //t4.forEach(System.out::println);
+
+        List<Mezzi> m1 = md.getMezziByCapienzaMoreThen20();
+        m1.forEach(System.out::println);
 
 
         input.close();

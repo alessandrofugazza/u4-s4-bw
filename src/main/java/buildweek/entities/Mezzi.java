@@ -9,6 +9,15 @@ import java.util.Random;
 @Entity
 @Table(name = "mezzi_di_trasporto")
 @DiscriminatorColumn(name = "tipologia_mezzo")
+@NamedQueries({@NamedQuery(name ="getMezziByTypeAutobus",query = "SELECT m FROM Mezzi m WHERE m.tipologia_mezzo = 'Autobus'" ),
+        @NamedQuery(name ="getMezziByTypeTram", query = "SELECT m FROM Mezzi m WHERE m.tipologia_mezzo = 'Tram'"),
+        @NamedQuery(name = "getMezziById", query ="SELECT m FROM Mezzi m WHERE m.mezzoId = :id" ),
+        @NamedQuery(name ="getMezziByCapienzaLessThen30", query ="SELECT m FROM Mezzi m WHERE m.capienza < 30" ),
+        @NamedQuery(name = "getMezziByCapienzaMoreThen20", query ="SELECT m FROM Mezzi m WHERE m.capienza > 20" ),
+        @NamedQuery(name = "getMezziByTratta",query = "SELECT m FROM Mezzi m WHERE m.tratta.id = :trattaId"),
+        @NamedQuery(name = "getMezziByStatusManutenzione", query ="SELECT m FROM Mezzi m WHERE LOWER(m.statusMezzo) = LOWER('Manutenzione')" ),
+        @NamedQuery(name = "getMezziByStatusInServizio",  query = "SELECT m FROM Mezzi m WHERE LOWER(m.statusMezzo) = LOWER('In_Servizio')" )
+})
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Mezzi {
     @Id
