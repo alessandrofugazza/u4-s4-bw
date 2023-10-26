@@ -161,20 +161,23 @@ public class Application {
 
 
         //*************************** QUERY TEST *********************************
+
         //UTENTE
-        // GET USER BY ID
-        List<Utente> u1 = ud.getUserBYId(314);
-        u1.forEach(elem -> System.out.println(elem));
 
-        // GET USER BY FIRSTNAME
-        List<Utente> u2 = ud.getUserBYName("taryn");
-        u2.forEach(elem -> System.out.println(elem));
+//        GET USER BY ID
+//        List<Utente> u1 = ud.getUserBYId(314);
+//        u1.forEach(elem -> System.out.println(elem));
+//
+//        // GET USER BY FIRSTNAME
+//        List<Utente> u2 = ud.getUserBYName("taryn");
+//        u2.forEach(elem -> System.out.println(elem));
+//
+//        // GET USER BY LASTNAME
+//        List<Utente> u3 = ud.getUserBYLastName("lockman");
+//        u3.forEach(elem -> System.out.println(elem));
 
-        // GET USER BY LASTNAME
-        List<Utente> u3 = ud.getUserBYLastName("lockman");
-        u3.forEach(elem -> System.out.println(elem));
-
-        //
+        //PERIODO
+        
         List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
         p1.forEach(elem -> System.out.println(elem));
 

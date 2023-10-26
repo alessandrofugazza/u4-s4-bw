@@ -52,19 +52,19 @@ public class UtenteDAO {
     }
 
     public List<Utente> getUserBYId(long userId) {
-        TypedQuery<Utente> getUser = em.createQuery("SELECT u FROM Utente u WHERE u.userId = :userId", Utente.class);
+        TypedQuery<Utente> getUser = em.createNamedQuery("getUserBYId", Utente.class);
         getUser.setParameter("userId", userId);
         return getUser.getResultList();
     }
 
     public List<Utente> getUserBYName(String name) {
-        TypedQuery<Utente> getUser = em.createQuery("SELECT u FROM Utente u WHERE LOWER(u.firstName) = LOWER(:name)", Utente.class);
+        TypedQuery<Utente> getUser = em.createNamedQuery("getUserBYName", Utente.class);
         getUser.setParameter("name", name);
         return getUser.getResultList();
     }
 
     public List<Utente> getUserBYLastName(String lastName) {
-        TypedQuery<Utente> getUser = em.createQuery("SELECT u FROM Utente u WHERE LOWER(u.lastName) = LOWER(:lastName)", Utente.class);
+        TypedQuery<Utente> getUser = em.createNamedQuery("getUserBYLastName", Utente.class);
         getUser.setParameter("lastName", lastName);
         return getUser.getResultList();
     }
