@@ -434,16 +434,13 @@ public class Application {
                                 System.out.println("Inserisci l'id dell'abbonamento che vuoi visualizzare");
                                 int idAbb = Integer.parseInt(input.nextLine());
                                 System.out.println(ad.getAbbonamentoById(idAbb));
+                                break;
 
                             }
-                            default: {
-                                System.err.println("Scelta non valida");
-                            }
+
                         }
                     }
-                    default: {
-                        System.out.println("Scelta non valida");
-                    }
+                                    
                 }
             } catch (Exception ex) {
                 System.out.println(ex);
