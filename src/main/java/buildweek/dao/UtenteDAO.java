@@ -51,9 +51,8 @@ public class UtenteDAO {
         System.out.println("L'utente e' stato refreshato");
     }
 
-    public List<Utente> getUserBYId(long userId) {
-        TypedQuery<Utente> getUser = em.createNamedQuery("getUserBYId", Utente.class);
-        getUser.setParameter("userId", userId);
+    public List<Utente> getAllUser() {
+        TypedQuery<Utente> getUser = em.createNamedQuery("getAllUsers", Utente.class);
         return getUser.getResultList();
     }
 

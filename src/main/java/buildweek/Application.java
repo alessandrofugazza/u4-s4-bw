@@ -226,7 +226,7 @@ public class Application {
                         System.out.println("Benvenuto Admin");
                         System.out.println("Cosa vuoi fare?");
                         System.out.println("""
-                                1: Cerca uno User tramite Id
+                                1: Visualizza tutti gli User
                                 2: Elimina uno User
                                 3: Cerca una tessera tramite id
                                 4: Stampa una lista di tutte le tessere scadute
@@ -243,14 +243,7 @@ public class Application {
                         int choose2 = Integer.parseInt(input.nextLine());
                         switch (choose2) {
                             case 1: {
-                                System.out.println("Inserisci l'id dell'utente");
-                                int idUtente = Integer.parseInt(input.nextLine());
-                                List<Utente> u1 = ud.getUserBYId(idUtente);
-                                if (!u1.isEmpty()) {
-                                    u1.forEach(System.out::println);
-                                } else {
-                                    System.err.println("Utente non trovato");
-                                }
+                                ud.getAllUser().forEach(System.out::println);
                                 break;
                             }
                             case 2: {
