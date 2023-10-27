@@ -379,7 +379,7 @@ public class Application {
                                 break;
                             }
                             case 4: {
-                                Tratta tratta = trd.getTratta();
+                                trd.getTrattaFull().forEach(System.out::println);
                                 break;
                             }
                         }
