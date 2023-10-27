@@ -10,7 +10,6 @@ import com.github.javafaker.Faker;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
@@ -180,7 +179,7 @@ public class Application {
 
         //PERIODO
 
-        List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
+        //List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
         //p1.forEach(System.out::println);
 
         //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
@@ -324,7 +323,7 @@ public class Application {
                         }
                     }
                     case 2: {
-                        
+
                     }
                 }
                 break;
@@ -332,7 +331,10 @@ public class Application {
                 System.out.println(ex);
             }
 
+
         }
+
+
         input.close();
         em.close();
         emf.close();

@@ -76,7 +76,7 @@ public class Tratta {
                 ", capolinea='" + capolinea + '\'' +
                 ", tempoMedio=" + tempoMedio +
                 ", tempoEffettivo=" + tempoEffettivo +
-                ", mezzi=" + mezzi +
                 '}';
+
     }
 }

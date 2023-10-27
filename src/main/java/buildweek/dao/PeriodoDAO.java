@@ -101,9 +101,35 @@ public class PeriodoDAO {
         System.out.println("Il periodo e' stato refreshato");
     }
 
-    public List<Periodo> getServizioByDataDiInizio(LocalDate dataDiInizio) {
-        TypedQuery<Periodo> getPeriodo = em.createQuery("SELECT p FROM Periodo p WHERE p.dataInizioServizio = :dataDiInizio", Periodo.class);
-        getPeriodo.setParameter("dataDiInizio", dataDiInizio);
+    public List<Periodo> getPeriodoByType(String status) {
+        TypedQuery<Periodo> getPeriodo = em.createQuery("SELECT p FROM Periodo p WHERE LOWER(p.status) = LOWER(:status) ", Periodo.class);
+        getPeriodo.setParameter("status", status);
         return getPeriodo.getResultList();
     }
+
+    public List<Periodo> getPeriodoByMezzoId(long mezzo_id) {
+        TypedQuery<Periodo> getPeriodo = em.createQuery("SELECT p FROM Periodo p WHERE p.mezzi.mezzoId = :mezzo_id", Periodo.class);
+        getPeriodo.setParameter("mezzo_id", mezzo_id);
+        return getPeriodo.getResultList();
+    }
+
+    public List<Periodo> getPeriodoByService(LocalDate inizio_servizio) {
+        TypedQuery<Periodo> getPeriodo = em.createQuery("SELECT p FROM Periodo p WHERE p.dataInizioServizio= :inizio_servizio", Periodo.class);
+        getPeriodo.setParameter("inizio_servizio", inizio_servizio);
+        return getPeriodo.getResultList();
+    }
+
+    public List<Periodo> getPeriodoByManutenzione(LocalDate inizio_manutenzione) {
+        TypedQuery<Periodo> getPeriodo = em.createQuery("SELECT p FROM Periodo p WHERE p.dataInizioManutenzione= :inizio_manutenzione", Periodo.class);
+        getPeriodo.setParameter("inizio_manutenzione", inizio_manutenzione);
+        return getPeriodo.getResultList();
+    }
+
+    public List<Periodo> getPeriodoById(long id_periodo) {
+        TypedQuery<Periodo> getPeriodo = em.createQuery("SELECT p FROM Periodo p WHERE p.idPeriodo = :id_periodo", Periodo.class);
+        getPeriodo.setParameter("id_periodo", id_periodo);
+        return getPeriodo.getResultList();
+    }
+
+
 }
