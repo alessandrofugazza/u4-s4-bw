@@ -321,6 +321,7 @@ public class Application {
                                 break;
                             }
                         }
+                        break;
                     }
                     case 2: {
                         System.out.println("Cosa vuoi fare?");
@@ -369,18 +370,30 @@ public class Application {
                                 break;
                             }
                             case 3: {
-
+                                Tessera foundTessera = td.findById(300);
+                                Abbonamento newAbbonamento = new Abbonamento(
+                                        DurataAbbonamento.values()[faker.number().numberBetween(0, DurataAbbonamento.values().length)],
+                                        LocalDate.now(),
+                                        LocalDate.now(), foundTessera);
+                                ad.save(newAbbonamento);
+                                break;
+                            }
+                            case 4: {
+                                Tratta tratta = trd.getTratta();
+                                break;
                             }
                         }
+                        break;
                     }
-                    break;
                 }
+                break;
             } catch (Exception ex) {
                 System.out.println(ex);
             }
 
-        input.close();
-        em.close();
-        emf.close();
+            input.close();
+            em.close();
+            emf.close();
+        }
     }
-}}
+}

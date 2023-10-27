@@ -76,4 +76,11 @@ public class TrattaDAO {
             return 0;
         }
     }
+
+    public Tratta getTratta() {
+        TypedQuery<Tratta> getTratta = em.createQuery("SELECT * FROM Tratta ", Tratta.class);
+        List<Tratta> tratte = getTratta.getResultList();
+        return getTratta.getSingleResult();
+    }
+
 }
