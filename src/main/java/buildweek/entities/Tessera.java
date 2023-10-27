@@ -29,20 +29,22 @@ public class Tessera {
     @OneToOne(mappedBy = "tessera", cascade = CascadeType.REMOVE)
     private Utente utente;
 
-    @OneToOne(mappedBy = "tessera")
+    @OneToOne(mappedBy = "tessera", cascade = CascadeType.REMOVE)
     private Abbonamento abbonamento;
-
 
     public Tessera() {
     }
 
-    public Tessera(LocalDate dataDiEmissioneTessera, LocalDate dataOdiernaTessera, Utente utente) {
+
+    public Tessera(LocalDate dataDiEmissioneTessera, LocalDate dataOdiernaTessera) {
         this.dataDiEmissioneTessera = dataDiEmissioneTessera;
         this.dataDiScandenzaTessera = dataDiEmissioneTessera.plusYears(1);
         this.dataOdiernaTessera = dataOdiernaTessera;
-        this.utente = utente;
     }
 
+    public Abbonamento getAbbonamento() {
+        return abbonamento;
+    }
 
     public Utente getUtente() {
         return utente;

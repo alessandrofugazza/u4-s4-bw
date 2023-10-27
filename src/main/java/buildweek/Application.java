@@ -15,6 +15,7 @@ import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class Application {
@@ -35,29 +36,27 @@ public class Application {
         TrattaDAO trd = new TrattaDAO(em);
         PeriodoDAO ped = new PeriodoDAO(em);
 
-        Supplier<Utente> userSupplier = () -> new Utente(
-                faker.name().firstName(),
-                faker.name().lastName(),
-                faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        );
 
-        //***************** STEP 1 CREARE UTENTI ************************
+        //***************** STEP 1 CREARE TESSERA ************************
 
-//        for (int i = 0; i < 2; i++) {
-//            ud.save(userSupplier.get());
+//        Tessera newTessera = new Tessera(
+//                faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                LocalDate.now());
+//        td.save(newTessera);
+
+
+        //***************** STEP 2 CREARE UTENTI ************************
+
+//        for (int i = 401; i < 402; i++) {
+//            Tessera foundTessera = td.findById(i);
+//            Utente User = new Utente(
+//                    faker.name().firstName(),
+//                    faker.name().lastName(),
+//                    faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                    foundTessera);
+//            ud.save(User);
 //        }
 
-        //***************** STEP 2 CREARE TESSERA ************************
-
-//        for (int i = 314; i < 322; i++) {
-//            Utente foundUsers = ud.findById(i);
-//            Tessera newTessera = new Tessera(
-//                    faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-//                    LocalDate.now(), foundUsers
-//
-//            );
-//            td.save(newTessera);
-//        }
 
         //***************** STEP 3 CREARE ABBONAMENTO ************************
 //
@@ -324,25 +323,64 @@ public class Application {
                         }
                     }
                     case 2: {
-                        
+                        System.out.println("Cosa vuoi fare?");
+                        System.out.println("""
+                                1: Creare un account con una tessera,
+                                2: Compra un biglietto,
+                                3: Compra un abbonamento,
+                                4: Cerca le tratte,
+                                5: ,
+                                """);
+                        int choose3 = Integer.parseInt(input.nextLine());
+                        switch (choose3) {
+                            case 1: {
+                                System.out.println("Inserisci la tua data di nascita(Anno-mese-giorno)");
+                                LocalDate dataUser = LocalDate.parse(input.nextLine());
+                                System.out.println("Inserisci il tuo nome");
+                                String nameUser = (input.nextLine());
+                                System.out.println("Inserisci il tuo cognome");
+                                String lastNameUser = (input.nextLine());
+
+                                Tessera newTessera = new Tessera(
+                                        faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                                        LocalDate.now());
+                                td.save(newTessera);
+
+                                Tessera foundTessera = newTessera;
+                                Utente User = new Utente(
+                                        nameUser,
+                                        lastNameUser,
+                                        dataUser,
+                                        foundTessera);
+                                ud.save(User);
+                                System.out.println("Benvenuto " + nameUser);
+                                break;
+                            }
+                            case 2: {
+                                Rivenditore foundRive = rd.findById(rndm.nextInt(338, 342));
+                                Mezzi foundMezzo = md.findById(rndm.nextInt(350, 357));
+                                Biglietto newBiglietto = new Biglietto(
+                                        Vidimazione.FALSE,
+                                        foundRive,
+                                        LocalDate.now(),
+                                        foundMezzo
+                                );
+                                bd.save(newBiglietto);
+                                break;
+                            }
+                            case 3: {
+
+                            }
+                        }
                     }
+                    break;
                 }
-                break;
             } catch (Exception ex) {
                 System.out.println(ex);
             }
-
         }
         input.close();
         em.close();
         emf.close();
     }
 }
-
-
-
-
-
-
-
-

@@ -73,7 +73,7 @@ public class UtenteDAO {
     public void deleteUserById(int userId) {
         em.getTransaction().begin();
         Query deleteQuery = em.createNamedQuery("deleteUserById");
-        deleteQuery.setParameter("userId", Long.parseLong("321"));
+        deleteQuery.setParameter("userId", Long.parseLong(String.valueOf(userId)));
         int deletedCount = deleteQuery.executeUpdate();
         em.getTransaction().commit();
         if (deletedCount > 0) {

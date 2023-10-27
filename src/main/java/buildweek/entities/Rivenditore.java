@@ -46,6 +46,7 @@ public abstract class Rivenditore {
         this.luogoDiEmissione = luogoDiEmissione;
     }
 
+
     @Override
     public String toString() {
         return "Rivenditore{" +

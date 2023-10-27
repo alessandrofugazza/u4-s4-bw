@@ -22,7 +22,7 @@ public class Utente {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "numero_tessera")
     private Tessera tessera;
 
@@ -30,10 +30,11 @@ public class Utente {
     public Utente() {
     }
 
-    public Utente(String firstName, String lastName, LocalDate birthDate) {
+    public Utente(String firstName, String lastName, LocalDate birthDate, Tessera tessera) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.tessera = tessera;
     }
 
     public Tessera getTessera() {
@@ -71,6 +72,7 @@ public class Utente {
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
+
 
     @Override
     public String toString() {
