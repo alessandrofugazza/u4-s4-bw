@@ -248,6 +248,7 @@ public class Application {
                             }
                             case 2: {
                                 System.out.println("Inserisci l'id dell'utente da eliminare");
+                                ud.getAllUser().forEach(System.out::println);
                                 long idUtente = Long.parseLong(input.nextLine());
                                 ud.findByIdAndDelete(idUtente);
                                 break;
@@ -366,6 +367,7 @@ public class Application {
 
 
                                 System.out.println("Benvenuto " + nameUser);
+                                ud.getAllUser().forEach(System.out::println);
                                 break;
                             }
                             case 2: {
@@ -383,9 +385,10 @@ public class Application {
                             case 3: {
                                 System.out.println("1: ABBONAMENTO MENSILE, 2: ABBONAMENTO SETTIMANALE");
                                 int tipoAbb = Integer.parseInt(input.nextLine());
+                                td.getAllTessere().forEach(System.out::println);
                                 switch (tipoAbb) {
                                     case 1: {
-                                        System.out.println("Inserisci il tuo numero id");
+                                        System.out.println("Inserisci l'id della tua tessera");
                                         int nameUser = Integer.parseInt((input.nextLine()));
                                         Tessera foundTessera = td.findById(nameUser);
                                         Abbonamento newAbbonamento = new Abbonamento(
@@ -395,6 +398,7 @@ public class Application {
                                                 foundTessera);
                                         ad.save(newAbbonamento);
                                         break;
+
                                     }
                                     case 2: {
                                         System.out.println("Inserisci l'id della tua tessera");
@@ -407,6 +411,7 @@ public class Application {
                                                 foundTessera);
                                         ad.save(newAbbonamento);
                                         break;
+
                                     }
                                 }
 
@@ -425,6 +430,7 @@ public class Application {
                             }
                             case 6: {
                                 System.out.println("Inserisci l'id dell'abbonamento che vuoi visualizzare");
+                                ad.getAllAbbonamenti().forEach(System.out::println);
                                 int idAbb = Integer.parseInt(input.nextLine());
                                 System.out.println(ad.getAbbonamentoById(idAbb));
                                 break;

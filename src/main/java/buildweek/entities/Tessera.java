@@ -8,7 +8,8 @@ import java.time.LocalDate;
 @NamedQueries({@NamedQuery(name = "getTesseraByNumber", query = "SELECT t FROM Tessera t WHERE t.numeroTessera = :number"),
         @NamedQuery(name = "getTesseraByIdUser", query = "SELECT t FROM Tessera t WHERE t.utente.userId = :userId"),
         @NamedQuery(name = "getTessereScadute", query = "SELECT t FROM Tessera t WHERE t.dataOdiernaTessera > dataDiScandenzaTessera"),
-        @NamedQuery(name = "getTessereInCorso", query = "SELECT t FROM Tessera t WHERE t.dataOdiernaTessera <= dataDiScandenzaTessera")
+        @NamedQuery(name = "getTessereInCorso", query = "SELECT t FROM Tessera t WHERE t.dataOdiernaTessera <= dataDiScandenzaTessera"),
+        @NamedQuery(name = "getAllTessere", query = "SELECT t FROM Tessera t")
 })
 public class Tessera {
 
@@ -88,9 +89,11 @@ public class Tessera {
     public String toString() {
         return "Tessera{" +
                 "numeroTessera=" + numeroTessera +
-                ", dataDiEmissione=" + dataDiEmissioneTessera +
-                ", dataDiScandenza=" + dataDiScandenzaTessera +
-                ", dataOdierna=" + dataOdiernaTessera +
+                ", dataDiEmissioneTessera=" + dataDiEmissioneTessera +
+                ", dataDiScandenzaTessera=" + dataDiScandenzaTessera +
+                ", dataOdiernaTessera=" + dataOdiernaTessera +
+                ", utente=" + utente +
                 '}';
+
     }
 }

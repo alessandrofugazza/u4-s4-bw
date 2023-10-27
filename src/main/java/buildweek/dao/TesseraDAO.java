@@ -73,4 +73,9 @@ public class TesseraDAO {
         return getTessere.getResultList();
     }
 
+    public List<Tessera> getAllTessere() {
+        TypedQuery<Tessera> getTessere = em.createNamedQuery("getAllTessere", Tessera.class);
+        return getTessere.getResultList();
+    }
+
 }

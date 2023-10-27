@@ -11,7 +11,8 @@ import java.time.LocalDate;
         @NamedQuery(name = "getAbbonamentiByDurata", query = "SELECT a FROM Abbonamento a WHERE a.durataAbbonamento = :durataAbbonamento"),
         @NamedQuery(name = "getAbbonamentiScaduti", query = "SELECT a FROM Abbonamento a WHERE a.dataOdiernaAbbonamento > dataDiScandenzaAbbonamento"),
         @NamedQuery(name = "getAbbonamentiInCorso", query = "SELECT a FROM Abbonamento a WHERE a.dataOdiernaAbbonamento <= dataDiScandenzaAbbonamento"),
-        @NamedQuery(name = "getAbbonamentoById", query = "SELECT a FROM Abbonamento a WHERE a.codiceAbbonamento = :codiceAbbonamento")
+        @NamedQuery(name = "getAbbonamentoById", query = "SELECT a FROM Abbonamento a WHERE a.codiceAbbonamento = :codiceAbbonamento"),
+        @NamedQuery(name = "getAllAbbonamenti", query = "SELECT a FROM Abbonamento a")
 })
 public class Abbonamento {
 
@@ -107,6 +108,7 @@ public class Abbonamento {
                 ", dataDiEmissioneAbbonamento=" + dataDiEmissioneAbbonamento +
                 ", dataDiScandenzaAbbonamento=" + dataDiScandenzaAbbonamento +
                 ", dataOdiernaAbbonamento=" + dataOdiernaAbbonamento +
+                ", tessera=" + tessera +
                 '}';
     }
 }

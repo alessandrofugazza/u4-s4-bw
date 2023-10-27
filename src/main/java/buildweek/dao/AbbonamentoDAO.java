@@ -73,4 +73,9 @@ public class AbbonamentoDAO {
         TypedQuery<Abbonamento> getAbbonamento = em.createNamedQuery("getAbbonamentiInCorso", Abbonamento.class);
         return getAbbonamento.getResultList();
     }
+
+    public List<Abbonamento> getAllAbbonamenti() {
+        TypedQuery<Abbonamento> getAbbonamento = em.createNamedQuery("getAllAbbonamenti", Abbonamento.class);
+        return getAbbonamento.getResultList();
+    }
 }
