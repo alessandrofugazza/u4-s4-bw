@@ -364,16 +364,23 @@ public class Application {
                                 break;
                             }
                             case 2: {
-                                Rivenditore foundRive = rd.findById(rndm.nextInt(338, 342));
-                                Mezzi foundMezzo = md.findById(rndm.nextInt(350, 357));
-                                Biglietto newBiglietto = new Biglietto(
-                                        Vidimazione.FALSE,
-                                        foundRive,
-                                        LocalDate.now(),
-                                        foundMezzo
-                                );
-                                bd.save(newBiglietto);
-                                break;
+                                Rivenditore foundRive = rd.findById(rndm.nextInt(340));
+                                if (foundRive instanceof DistributoreAutomatico) {
+                                    DistributoreAutomatico automatico = (DistributoreAutomatico) foundRive;
+                                    if (automatico.getStatusDistributore() == StatusDistributore.FUORI_SERVIZIO) {
+                                        System.err.println("il distributore è fuori servizio");
+                                    } else {
+                                        Mezzi foundMezzo = md.findById(rndm.nextInt(350, 357));
+                                        Biglietto newBiglietto = new Biglietto(
+                                                Vidimazione.FALSE,
+                                                foundRive,
+                                                LocalDate.now(),
+                                                foundMezzo
+                                        );
+                                        bd.save(newBiglietto);
+                                        break;
+                                    }
+                                }
                             }
                             case 3: {
                                 System.out.println("1: ABBONAMENTO MENSILE, 2: ABBONAMENTO SETTIMANALE");
