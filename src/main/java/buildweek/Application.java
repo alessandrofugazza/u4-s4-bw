@@ -249,7 +249,7 @@ public class Application {
                                 if (!u1.isEmpty()) {
                                     u1.forEach(System.out::println);
                                 } else {
-                                    System.out.println("Utente non trovato");
+                                    System.err.println("Utente non trovato");
                                 }
                                 break;
                             }
@@ -329,7 +329,7 @@ public class Application {
                                 break;
                             }
                             default: {
-                                System.out.println("Scelta non valida");
+                                System.err.println("Scelta non valida");
                                 break;
                             }
                         }
@@ -437,7 +437,7 @@ public class Application {
 
                             }
                             default: {
-                                System.out.println("Scelta non valida");
+                                System.err.println("Scelta non valida");
                             }
                         }
                     }
