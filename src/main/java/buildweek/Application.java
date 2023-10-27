@@ -350,7 +350,7 @@ public class Application {
                         int choose3 = Integer.parseInt(input.nextLine());
                         switch (choose3) {
                             case 1: {
-                                System.out.println("Inserisci la tua data di nascita(Anno-mese-giorno)");
+                                System.out.println("Inserisci la tua data di nascita(YYYY-MM-DD)");
                                 LocalDate dataUser = LocalDate.parse(input.nextLine());
                                 System.out.println("Inserisci il tuo nome");
                                 String nameUser = (input.nextLine());
