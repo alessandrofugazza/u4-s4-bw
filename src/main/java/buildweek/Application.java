@@ -11,9 +11,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class Application {
@@ -246,7 +248,7 @@ public class Application {
                             case 2: {
                                 System.out.println("Inserisci l'id dell'utente da eliminare");
                                 int idUtente = Integer.parseInt(input.nextLine());
-                                ud.deleteUserById(idUtente);
+                                ud.findByIdAndDelete(idUtente);
                                 break;
                             }
                             case 3: {
@@ -340,18 +342,21 @@ public class Application {
                                 System.out.println("Inserisci il tuo cognome");
                                 String lastNameUser = (input.nextLine());
 
-                                /*Tessera newTessera = new Tessera(
-                                        faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                                        LocalDate.now());
-                                td.save(newTessera);
-
-                                Tessera foundTessera = newTessera;
                                 Utente User = new Utente(
                                         nameUser,
                                         lastNameUser,
-                                        dataUser,
-                                        foundTessera);
-                                ud.save(User);*/
+                                        dataUser);
+                                ud.save(User);
+
+                                Utente foundUtente = User;
+
+                                Tessera newTessera = new Tessera(
+                                        faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                                        LocalDate.now(),
+                                        foundUtente);
+                                td.save(newTessera);
+
+
                                 System.out.println("Benvenuto " + nameUser);
                                 break;
                             }
@@ -368,11 +373,14 @@ public class Application {
                                 break;
                             }
                             case 3: {
-                                Tessera foundTessera = td.findById(300);
+                                System.out.println("Inserisci il tuo numero id");
+                                int nameUser = Integer.parseInt((input.nextLine()));
+                                Tessera foundTessera = td.findById(nameUser);
                                 Abbonamento newAbbonamento = new Abbonamento(
                                         DurataAbbonamento.values()[faker.number().numberBetween(0, DurataAbbonamento.values().length)],
                                         LocalDate.now(),
-                                        LocalDate.now(), foundTessera);
+                                        LocalDate.now(),
+                                        foundTessera);
                                 ad.save(newAbbonamento);
                                 break;
                             }
@@ -381,18 +389,16 @@ public class Application {
                                 break;
                             }
                         }
-                        break;
                     }
                 }
-                break;
             } catch (Exception ex) {
                 System.out.println(ex);
             }
-
-            input.close();
-            em.close();
-            emf.close();
         }
+        input.close();
+        em.close();
+        emf.close();
+
     }
 }
 
