@@ -13,6 +13,7 @@ import javax.persistence.Persistence;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -23,7 +24,7 @@ public class Application {
 
     public static void main(String[] args) {
 
-        Faker faker = new Faker();
+        Faker faker = new Faker(Locale.ITALY);
         Random rndm = new Random();
         EntityManager em = emf.createEntityManager();
         Scanner input = new Scanner(System.in);
@@ -39,7 +40,7 @@ public class Application {
 
         //***************** STEP 1 CREARE UTENTE ************************
 
-//        for (int i = 0; i < 1; i++) {
+//        for (int i = 0; i < 20; i++) {
 //            Utente User = new Utente(
 //                    faker.name().firstName(),
 //                    faker.name().lastName(),
@@ -50,17 +51,18 @@ public class Application {
 
 
         //***************** STEP 2 CREARE TESSERA ************************
-
-//        Utente foundUser = ud.findById(378);
-//        Tessera newTessera = new Tessera(
-//                faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-//                LocalDate.now(), foundUser);
-//        td.save(newTessera);
+//        for (int i = 404; i < 424; i++) {
+//            Utente foundUser = ud.findById(i);
+//            Tessera newTessera = new Tessera(
+//                    faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                    LocalDate.now(), foundUser);
+//            td.save(newTessera);
+//        }
 
 
         //***************** STEP 3 CREARE ABBONAMENTO ************************
 
-//        for (int i = 379; i < 380; i++) {
+//        for (int i = 424; i < 444; i++) {
 //
 //            Tessera foundTessera = td.findById(i);
 //            Abbonamento newAbbonamento =
@@ -81,7 +83,7 @@ public class Application {
         Supplier<RivenditoreAutorizzato> rivenditoreAutorizzatoSupplier = () -> new RivenditoreAutorizzato(
                 faker.address().cityName(),
                 faker.rickAndMorty().character());
-        //        for (int i = 0; i < 2; i++) {
+//        for (int i = 0; i < 4; i++) {
 //            rd.save(distributoreAutomaticoSupplier.get());
 //            rd.save(rivenditoreAutorizzatoSupplier.get());
 //        }
@@ -89,27 +91,27 @@ public class Application {
         //***************** STEP 5 CREARE TRATTA ************************
 
         Supplier<Tratta> trattaSupplier = () -> new Tratta(
-                faker.country().capital(),
-                faker.country().capital(),
+                faker.address().streetName(),
+                faker.address().streetName(),
                 rndm.nextInt(0, 60));
 
-        //        for (int i = 0; i < 8; i++) {
+//        for (int i = 0; i < 15; i++) {
 //            trd.save(trattaSupplier.get());
 //        }
 
         //***************** STEP 6 CREARE MEZZI ************************
-//
-//        for (int i = 342; i < 346; i++) {
+
+//        for (int i = 472; i < 479; i++) {
 //            Tratta foundTratta = trd.findById(i);
 //
 //            Autobus autobusSupplier = new Autobus(
 //                    rndm.nextInt(25, 40),
 //                    StatusMezzo.values()[faker.number().numberBetween(0, StatusMezzo.values().length)], foundTratta
-//              );
+//            );
 //            md.save(autobusSupplier);
 //        }
-
-//        for (int i = 346; i < 350; i++) {
+//
+//        for (int i = 479; i < 487; i++) {
 //            Tratta foundTratta = trd.findById(i);
 //            Tram tramSupplier = new Tram(
 //                    rndm.nextInt(25, 40),
@@ -120,9 +122,9 @@ public class Application {
 
         //***************** STEP 7 CREARE BIGLIETTI ************************
 
-//        for (int i = 0; i < 8; i++) {
-//            Rivenditore foundRive = rd.findById(rndm.nextInt(338, 341));
-//            Mezzi foundMezzo = md.findById(rndm.nextInt(350, 357));
+//        for (int i = 0; i < 15; i++) {
+//            Rivenditore foundRive = rd.findById(rndm.nextInt(464, 472));
+//            Mezzi foundMezzo = md.findById(rndm.nextInt(502, 517));
 //            Biglietto newBiglietto = new Biglietto(
 //                    Vidimazione.values()[faker.number().numberBetween(0, Vidimazione.values().length)],
 //                    foundRive,
@@ -134,11 +136,11 @@ public class Application {
 
         //***************** STEP 8 CREARE PERIODI ************************
 
-//        Mezzi m1 = md.findById(351);
-//        m1.setStatusMezzo(StatusMezzo.IN_SERVIZIO);
+//        Mezzi m1 = md.findById(506);
+//        m1.setStatusMezzo(StatusMezzo.MANUTENZIONE);
 //        md.save(m1);
-//
-//        for (int i = 351; i < 352; i++) {
+
+//        for (int i = 506; i < 507; i++) {
 //            Mezzi foundMezzi = md.findById(i);
 //            Periodo periodoSupplier = new Manutenzione(
 //                    faker.date().past(30, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
@@ -149,7 +151,7 @@ public class Application {
 //                ped.save(periodoSupplier);
 //            }
 //        }
-//        for (int i = 351; i < 352; i++) {
+//        for (int i = 506; i < 507; i++) {
 //            Mezzi foundMezzi2 = md.findById(i);
 //            Periodo periodoSupplier2 = new Servizio(
 //                    faker.date().past(30, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
@@ -159,6 +161,7 @@ public class Application {
 //            if (foundMezzi2.getStatusMezzo() == StatusMezzo.IN_SERVIZIO) {
 //                ped.save(periodoSupplier2);
 //            }
+//        }
 
 
         //*************************** QUERY TEST *********************************
@@ -206,7 +209,7 @@ public class Application {
         //List<Tessera> t3 = td.getTessereInCorso();
         //t3.forEach(System.out::println);
 
-        List<Mezzi> m1 = md.getMezziByCapienzaMoreThen20();
+        //List<Mezzi> m1 = md.getMezziByCapienzaMoreThen20();
         // m1.forEach(System.out::println);
 
         loop:
@@ -215,6 +218,7 @@ public class Application {
                 System.out.println("Benvenuto, premi 1 se sei un ADMIN, 2 se sei uno USER, 0 per uscire ");
                 int choose = Integer.parseInt(input.nextLine());
                 if (choose == 0) {
+                    System.out.println("Grazie per aver usato la nostra piattaforma");
                     break loop;
                 }
                 switch (choose) {
@@ -242,7 +246,11 @@ public class Application {
                                 System.out.println("Inserisci l'id dell'utente");
                                 int idUtente = Integer.parseInt(input.nextLine());
                                 List<Utente> u1 = ud.getUserBYId(idUtente);
-                                u1.forEach(System.out::println);
+                                if (!u1.isEmpty()) {
+                                    u1.forEach(System.out::println);
+                                } else {
+                                    System.out.println("Utente non trovato");
+                                }
                                 break;
                             }
                             case 2: {
@@ -320,6 +328,10 @@ public class Application {
                                 md.getMezziByStatusInServizio().forEach(System.out::println);
                                 break;
                             }
+                            default: {
+                                System.out.println("Scelta non valida");
+                                break;
+                            }
                         }
                         break;
                     }
@@ -332,9 +344,9 @@ public class Application {
                                 4: Cerca le tratte,
                                 5: Visualizza la tua tessera
                                 6: Visualizza il tuo abbonamento
-                                                                
-                                                                
                                 """);
+
+
                         int choose3 = Integer.parseInt(input.nextLine());
                         switch (choose3) {
                             case 1: {
@@ -413,19 +425,37 @@ public class Application {
                                 break;
                             }
                             case 5: {
+                                System.out.println("Inserisci l'id della tua tessera");
+                                int idTessera = Integer.parseInt(input.nextLine());
+                                td.getTesseraByNumber(idTessera).forEach(System.out::println);
+                                break;
+                            }
+                            case 6: {
+                                System.out.println("Inserisci l'id dell'abbonamento che vuoi visualizzare");
+                                int idAbb = Integer.parseInt(input.nextLine());
+                                System.out.println(ad.getAbbonamentoById(idAbb));
 
                             }
+                            default: {
+                                System.out.println("Scelta non valida");
+                            }
                         }
+                    }
+                    default: {
+                        System.out.println("Scelta non valida");
                     }
                 }
             } catch (Exception ex) {
                 System.out.println(ex);
             }
         }
+
+
         input.close();
         em.close();
         emf.close();
 
     }
 }
+
 

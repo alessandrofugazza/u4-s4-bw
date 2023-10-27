@@ -52,11 +52,11 @@ public class AbbonamentoDAO {
         System.out.println("L'abbonamento e' stato refreshato");
     }
 
-//    public Abbonamento getAbbonamentoById(long codiceAbbonamento) {
-//        TypedQuery<Abbonamento> getAbbonamento = em.createNamedQuery("getAbbonamentoById", Abbonamento.class);
-//        getAbbonamento.setParameter("codiceAbbonamento", codiceAbbonamento);
-//        return getAbbonamento.getSingleResult();
-//    }
+    public Abbonamento getAbbonamentoById(long codiceAbbonamento) {
+        TypedQuery<Abbonamento> getAbbonamento = em.createNamedQuery("getAbbonamentoById", Abbonamento.class);
+        getAbbonamento.setParameter("codiceAbbonamento", codiceAbbonamento);
+        return getAbbonamento.getSingleResult();
+    }
 
     public List<Abbonamento> getAbbonamentiByDurata(DurataAbbonamento durata) {
         TypedQuery<Abbonamento> getAbbonamento = em.createNamedQuery("getAbbonamentiByDurata", Abbonamento.class);

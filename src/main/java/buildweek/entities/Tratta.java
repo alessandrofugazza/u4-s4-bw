@@ -28,7 +28,11 @@ public class Tratta {
         this.zonaPartenza = zonaPartenza;
         this.capolinea = capolinea;
         this.tempoMedio = tempoMedio;
-        this.tempoEffettivo = tempoMedio - 10;
+        if (tempoMedio % 2 == 0) {
+            this.tempoEffettivo = tempoMedio + 5;
+        } else {
+            this.tempoEffettivo = tempoMedio - 5;
+        }
     }
 
 
