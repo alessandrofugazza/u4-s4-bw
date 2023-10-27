@@ -226,19 +226,19 @@ public class Application {
                         System.out.println("Benvenuto Admin");
                         System.out.println("Cosa vuoi fare?");
                         System.out.println("""
-                                1: Cerca uno User tramite Id,
-                                2: Elimina uno User,
-                                3: Cerca una tessera tramite id,
-                                4: Stampa una lista di tutte le tessere scadute,
-                                5: Stampa una lista di tutte le tessere in corso,
-                                6: Cerca una abbonamento tramite numero tessera,
-                                7: Cerca una abbonamento per durata,
-                                8: Stampa una lista di abbonamenti scaduti,
-                                9: Stampa una lista di abbonamenti in corso,
-                                10: Cerca biglietto per vidimazione,
-                                11: Cerca biglietto per id del mezzo,
-                                12: Stampa una lista di mezzi in manutenzione,
-                                13: Stampa una lista di mezzi in servizio,
+                                1: Cerca uno User tramite Id
+                                2: Elimina uno User
+                                3: Cerca una tessera tramite id
+                                4: Stampa una lista di tutte le tessere scadute
+                                5: Stampa una lista di tutte le tessere in corso
+                                6: Cerca una abbonamento tramite numero tessera
+                                7: Cerca una abbonamento per durata
+                                8: Stampa una lista di abbonamenti scaduti
+                                9: Stampa una lista di abbonamenti in corso
+                                10: Cerca biglietto per vidimazione
+                                11: Cerca biglietto per id del mezzo
+                                12: Stampa una lista di mezzi in manutenzione
+                                13: Stampa una lista di mezzi in servizio
                                 \s""");
                         int choose2 = Integer.parseInt(input.nextLine());
                         switch (choose2) {
@@ -338,10 +338,10 @@ public class Application {
                     case 2: {
                         System.out.println("Cosa vuoi fare?");
                         System.out.println("""
-                                1: Creare un account con una tessera,
-                                2: Compra un biglietto,
-                                3: Compra un abbonamento,
-                                4: Cerca le tratte,
+                                1: Creare un account con una tessera
+                                2: Compra un biglietto
+                                3: Compra un abbonamento
+                                4: Cerca le tratte
                                 5: Visualizza la tua tessera
                                 6: Visualizza il tuo abbonamento
                                 """);
