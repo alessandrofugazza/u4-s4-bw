@@ -215,7 +215,12 @@ public class Application {
         loop:
         while (true) {
             try {
-                System.out.println("Benvenuto, premi 1 se sei un ADMIN, 2 se sei uno USER, 0 per uscire ");
+                System.out.println("""
+                        Benvenuto
+                        1: ADMIN
+                        2: USER
+                        0: ESCI
+                        \s""");
                 int choose = Integer.parseInt(input.nextLine());
                 if (choose == 0) {
                     System.out.println("Grazie per aver usato la nostra piattaforma");
