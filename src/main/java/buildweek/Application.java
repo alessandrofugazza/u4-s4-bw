@@ -179,7 +179,7 @@ public class Application {
 
         //PERIODO
 
-        List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
+        //List<Periodo> p1 = ped.getServizioByDataDiInizio(LocalDate.of(2023, 10, 13));
         //p1.forEach(System.out::println);
 
         //ped.findPeriodoByDataInizioAndUpdateDataInizio(LocalDate.of(2023, 10, 13), LocalDate.of(2023, 11, 7));
@@ -378,9 +378,9 @@ public class Application {
             } catch (Exception ex) {
                 System.out.println(ex);
             }
-        }
+
         input.close();
         em.close();
         emf.close();
     }
-}
+}}
