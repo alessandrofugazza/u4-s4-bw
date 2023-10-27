@@ -22,20 +22,19 @@ public class Utente {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne(cascade = {CascadeType.REMOVE})
-    @JoinColumn(name = "numero_tessera")
+    @OneToOne(mappedBy = "utente", cascade = CascadeType.REMOVE)
     private Tessera tessera;
 
 
     public Utente() {
     }
 
-    public Utente(String firstName, String lastName, LocalDate birthDate, Tessera tessera) {
+    public Utente(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
-        this.tessera = tessera;
     }
+
 
     public Tessera getTessera() {
         return tessera;

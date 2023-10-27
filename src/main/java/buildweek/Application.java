@@ -1,21 +1,19 @@
 package buildweek;
 
 import buildweek.dao.*;
-import buildweek.entities.*;
-import buildweek.enums.DurataAbbonamento;
+import buildweek.entities.DistributoreAutomatico;
+import buildweek.entities.Mezzi;
+import buildweek.entities.RivenditoreAutorizzato;
+import buildweek.entities.Tratta;
 import buildweek.enums.StatusDistributore;
-import buildweek.enums.Vidimazione;
 import com.github.javafaker.Faker;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class Application {
@@ -39,28 +37,28 @@ public class Application {
 
         //***************** STEP 1 CREARE TESSERA ************************
 
+//        Utente foundUser = ud.findById(378);
 //        Tessera newTessera = new Tessera(
 //                faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-//                LocalDate.now());
+//                LocalDate.now(), foundUser);
 //        td.save(newTessera);
 
 
         //***************** STEP 2 CREARE UTENTI ************************
 
-//        for (int i = 401; i < 402; i++) {
-//            Tessera foundTessera = td.findById(i);
+//        for (int i = 0; i < 1; i++) {
 //            Utente User = new Utente(
 //                    faker.name().firstName(),
 //                    faker.name().lastName(),
-//                    faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-//                    foundTessera);
+//                    faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+//            );
 //            ud.save(User);
 //        }
 
-
+        
         //***************** STEP 3 CREARE ABBONAMENTO ************************
-//
-//        for (int i = 322; i < 330; i++) {
+
+//        for (int i = 379; i < 380; i++) {
 //
 //            Tessera foundTessera = td.findById(i);
 //            Abbonamento newAbbonamento =
@@ -210,177 +208,178 @@ public class Application {
         // m1.forEach(System.out::println);
 
         loop:
-        while (true) {
-            try {
-                System.out.println("Benvenuto, premi 1 se sei un ADMIN, 2 se sei uno USER, 0 per uscire ");
-                int choose = Integer.parseInt(input.nextLine());
-                if (choose == 0) {
-                    break loop;
-                }
-                switch (choose) {
-                    case 1: {
-                        System.out.println("Benvenuto Admin");
-                        System.out.println("Cosa vuoi fare?");
-                        System.out.println("""
-                                1: Cerca uno User tramite Id,
-                                2: Elimina uno User,
-                                3: Cerca una tessera tramite id,
-                                4: Stampa una lista di tutte le tessere scadute,
-                                5: Stampa una lista di tutte le tessere in corso,
-                                6: Cerca una abbonamento tramite numero tessera,
-                                7: Cerca una abbonamento per durata,
-                                8: Stampa una lista di abbonamenti scaduti,
-                                9: Stampa una lista di abbonamenti in corso,
-                                10: Cerca biglietto per vidimazione,
-                                11: Cerca biglietto per id del mezzo,
-                                12: Stampa una lista di mezzi in manutenzione,
-                                13: Stampa una lista di mezzi in servizio,
-                                \s""");
-                        int choose2 = Integer.parseInt(input.nextLine());
-                        switch (choose2) {
-                            case 1: {
-                                System.out.println("Inserisci l'id dell'utente");
-                                int idUtente = Integer.parseInt(input.nextLine());
-                                List<Utente> u1 = ud.getUserBYId(idUtente);
-                                u1.forEach(System.out::println);
-                                break;
-                            }
-                            case 2: {
-                                System.out.println("Inserisci l'id dell'utente da eliminare");
-                                int idUtente = Integer.parseInt(input.nextLine());
-                                ud.deleteUserById(idUtente);
-                                break;
-                            }
-                            case 3: {
-                                System.out.println("Inserisci l'id della tessera");
-                                int idTessera = Integer.parseInt(input.nextLine());
-                                List<Tessera> t1 = td.getTesseraByNumber(idTessera);
-                                t1.forEach(System.out::println);
-                                break;
-                            }
-                            case 4: {
-                                List<Tessera> t2 = td.getTessereScadute();
-                                t2.forEach(System.out::println);
-                                break;
-                            }
-                            case 5: {
-                                List<Tessera> t3 = td.getTessereInCorso();
-                                t3.forEach(System.out::println);
-                                break;
-                            }
-                            case 6: {
-                                System.out.println("Inserisci l'id dell'abbonamento");
-                                int idAbbonamento = Integer.parseInt(input.nextLine());
-                                Abbonamento a1 = ad.findById(idAbbonamento);
-                                System.out.println(a1);
-                                break;
-                            }
-                            case 7: {
-                                System.out.println("1: SETTIMANALI, 2: MENSILI");
-                                int choose3 = Integer.parseInt(input.nextLine());
-                                if (choose3 == 1) {
-                                    ad.getAbbonamentiByDurata(DurataAbbonamento.SETTIMANALE).forEach(System.out::println);
-                                    break;
-                                } else {
-                                    ad.getAbbonamentiByDurata(DurataAbbonamento.MENSILE).forEach(System.out::println);
-                                    break;
-                                }
-                            }
-                            case 8: {
-                                ad.getAbbonamentiScaduti().forEach(System.out::println);
-                                break;
-                            }
-                            case 9: {
-                                ad.getAbbonamentiInCorso().forEach(System.out::println);
-                                break;
-                            }
-                            case 10: {
-                                System.out.println("1: VIDIMATI, 2: NON-VIDIMATI");
-                                int choose3 = Integer.parseInt(input.nextLine());
-                                if (choose3 == 1) {
-                                    bd.getBigliettiVidimati(Vidimazione.TRUE).forEach(System.out::println);
-                                    break;
-                                } else {
-                                    bd.getBigliettiVidimati(Vidimazione.FALSE).forEach(System.out::println);
-                                    break;
-                                }
-                            }
-                            case 11: {
-                                System.out.println("Inserisci l'id del mezzo");
-                                int idMezzo = Integer.parseInt(input.nextLine());
-                                List<Biglietto> b1 = bd.getByMezzo(idMezzo);
-                                b1.forEach(System.out::println);
-                                break;
-                            }
-                            case 12: {
-                                md.getMezziByStatusManutenzione().forEach(System.out::println);
-                                break;
-                            }
-                            case 13: {
-                                md.getMezziByStatusInServizio().forEach(System.out::println);
-                                break;
-                            }
-                        }
-                    }
-                    case 2: {
-                        System.out.println("Cosa vuoi fare?");
-                        System.out.println("""
-                                1: Creare un account con una tessera,
-                                2: Compra un biglietto,
-                                3: Compra un abbonamento,
-                                4: Cerca le tratte,
-                                5: ,
-                                """);
-                        int choose3 = Integer.parseInt(input.nextLine());
-                        switch (choose3) {
-                            case 1: {
-                                System.out.println("Inserisci la tua data di nascita(Anno-mese-giorno)");
-                                LocalDate dataUser = LocalDate.parse(input.nextLine());
-                                System.out.println("Inserisci il tuo nome");
-                                String nameUser = (input.nextLine());
-                                System.out.println("Inserisci il tuo cognome");
-                                String lastNameUser = (input.nextLine());
-
-                                Tessera newTessera = new Tessera(
-                                        faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                                        LocalDate.now());
-                                td.save(newTessera);
-
-                                Tessera foundTessera = newTessera;
-                                Utente User = new Utente(
-                                        nameUser,
-                                        lastNameUser,
-                                        dataUser,
-                                        foundTessera);
-                                ud.save(User);
-                                System.out.println("Benvenuto " + nameUser);
-                                break;
-                            }
-                            case 2: {
-                                Rivenditore foundRive = rd.findById(rndm.nextInt(338, 342));
-                                Mezzi foundMezzo = md.findById(rndm.nextInt(350, 357));
-                                Biglietto newBiglietto = new Biglietto(
-                                        Vidimazione.FALSE,
-                                        foundRive,
-                                        LocalDate.now(),
-                                        foundMezzo
-                                );
-                                bd.save(newBiglietto);
-                                break;
-                            }
-                            case 3: {
-
-                            }
-                        }
-                    }
-                    break;
-                }
-            } catch (Exception ex) {
-                System.out.println(ex);
-            }
+//        while (true) {
+//            try {
+//                System.out.println("Benvenuto, premi 1 se sei un ADMIN, 2 se sei uno USER, 0 per uscire ");
+//                int choose = Integer.parseInt(input.nextLine());
+//                if (choose == 0) {
+//                    break loop;
+//                }
+//                switch (choose) {
+//                    case 1: {
+//                        System.out.println("Benvenuto Admin");
+//                        System.out.println("Cosa vuoi fare?");
+//                        System.out.println("""
+//                                1: Cerca uno User tramite Id,
+//                                2: Elimina uno User,
+//                                3: Cerca una tessera tramite id,
+//                                4: Stampa una lista di tutte le tessere scadute,
+//                                5: Stampa una lista di tutte le tessere in corso,
+//                                6: Cerca una abbonamento tramite numero tessera,
+//                                7: Cerca una abbonamento per durata,
+//                                8: Stampa una lista di abbonamenti scaduti,
+//                                9: Stampa una lista di abbonamenti in corso,
+//                                10: Cerca biglietto per vidimazione,
+//                                11: Cerca biglietto per id del mezzo,
+//                                12: Stampa una lista di mezzi in manutenzione,
+//                                13: Stampa una lista di mezzi in servizio,
+//                                \s""");
+//                        int choose2 = Integer.parseInt(input.nextLine());
+//                        switch (choose2) {
+//                            case 1: {
+//                                System.out.println("Inserisci l'id dell'utente");
+//                                int idUtente = Integer.parseInt(input.nextLine());
+//                                List<Utente> u1 = ud.getUserBYId(idUtente);
+//                                u1.forEach(System.out::println);
+//                                break;
+//                            }
+//                            case 2: {
+//                                System.out.println("Inserisci l'id dell'utente da eliminare");
+//                                int idUtente = Integer.parseInt(input.nextLine());
+//                                ud.deleteUserById(idUtente);
+//                                break;
+//                            }
+//                            case 3: {
+//                                System.out.println("Inserisci l'id della tessera");
+//                                int idTessera = Integer.parseInt(input.nextLine());
+//                                List<Tessera> t1 = td.getTesseraByNumber(idTessera);
+//                                t1.forEach(System.out::println);
+//                                break;
+//                            }
+//                            case 4: {
+//                                List<Tessera> t2 = td.getTessereScadute();
+//                                t2.forEach(System.out::println);
+//                                break;
+//                            }
+//                            case 5: {
+//                                List<Tessera> t3 = td.getTessereInCorso();
+//                                t3.forEach(System.out::println);
+//                                break;
+//                            }
+//                            case 6: {
+//                                System.out.println("Inserisci l'id dell'abbonamento");
+//                                int idAbbonamento = Integer.parseInt(input.nextLine());
+//                                Abbonamento a1 = ad.findById(idAbbonamento);
+//                                System.out.println(a1);
+//                                break;
+//                            }
+//                            case 7: {
+//                                System.out.println("1: SETTIMANALI, 2: MENSILI");
+//                                int choose3 = Integer.parseInt(input.nextLine());
+//                                if (choose3 == 1) {
+//                                    ad.getAbbonamentiByDurata(DurataAbbonamento.SETTIMANALE).forEach(System.out::println);
+//                                    break;
+//                                } else {
+//                                    ad.getAbbonamentiByDurata(DurataAbbonamento.MENSILE).forEach(System.out::println);
+//                                    break;
+//                                }
+//                            }
+//                            case 8: {
+//                                ad.getAbbonamentiScaduti().forEach(System.out::println);
+//                                break;
+//                            }
+//                            case 9: {
+//                                ad.getAbbonamentiInCorso().forEach(System.out::println);
+//                                break;
+//                            }
+//                            case 10: {
+//                                System.out.println("1: VIDIMATI, 2: NON-VIDIMATI");
+//                                int choose3 = Integer.parseInt(input.nextLine());
+//                                if (choose3 == 1) {
+//                                    bd.getBigliettiVidimati(Vidimazione.TRUE).forEach(System.out::println);
+//                                    break;
+//                                } else {
+//                                    bd.getBigliettiVidimati(Vidimazione.FALSE).forEach(System.out::println);
+//                                    break;
+//                                }
+//                            }
+//                            case 11: {
+//                                System.out.println("Inserisci l'id del mezzo");
+//                                int idMezzo = Integer.parseInt(input.nextLine());
+//                                List<Biglietto> b1 = bd.getByMezzo(idMezzo);
+//                                b1.forEach(System.out::println);
+//                                break;
+//                            }
+//                            case 12: {
+//                                md.getMezziByStatusManutenzione().forEach(System.out::println);
+//                                break;
+//                            }
+//                            case 13: {
+//                                md.getMezziByStatusInServizio().forEach(System.out::println);
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    case 2: {
+//                        System.out.println("Cosa vuoi fare?");
+//                        System.out.println("""
+//                                1: Creare un account con una tessera,
+//                                2: Compra un biglietto,
+//                                3: Compra un abbonamento,
+//                                4: Cerca le tratte,
+//                                5: ,
+//                                """);
+//                        int choose3 = Integer.parseInt(input.nextLine());
+//                        switch (choose3) {
+//                            case 1: {
+//                                System.out.println("Inserisci la tua data di nascita(Anno-mese-giorno)");
+//                                LocalDate dataUser = LocalDate.parse(input.nextLine());
+//                                System.out.println("Inserisci il tuo nome");
+//                                String nameUser = (input.nextLine());
+//                                System.out.println("Inserisci il tuo cognome");
+//                                String lastNameUser = (input.nextLine());
+//
+//                                Tessera newTessera = new Tessera(
+//                                        faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                                        LocalDate.now());
+//                                td.save(newTessera);
+//
+//                                Tessera foundTessera = newTessera;
+//                                Utente User = new Utente(
+//                                        nameUser,
+//                                        lastNameUser,
+//                                        dataUser,
+//                                        foundTessera);
+//                                ud.save(User);
+//                                System.out.println("Benvenuto " + nameUser);
+//                                break;
+//                            }
+//                            case 2: {
+//                                Rivenditore foundRive = rd.findById(rndm.nextInt(338, 342));
+//                                Mezzi foundMezzo = md.findById(rndm.nextInt(350, 357));
+//                                Biglietto newBiglietto = new Biglietto(
+//                                        Vidimazione.FALSE,
+//                                        foundRive,
+//                                        LocalDate.now(),
+//                                        foundMezzo
+//                                );
+//                                bd.save(newBiglietto);
+//                                break;
+//                            }
+//                            case 3: {
+//
+//                            }
+//                        }
+//                    }
+//                    break;
+//                }
+//            } catch (Exception ex) {
+//                System.out.println(ex);
+//            }
 
         input.close();
         em.close();
         emf.close();
     }
-}}
+}
+

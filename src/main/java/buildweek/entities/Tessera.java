@@ -26,7 +26,8 @@ public class Tessera {
 
     @Column(name = "data_odierna_tessera")
     private LocalDate dataOdiernaTessera;
-    @OneToOne(mappedBy = "tessera", cascade = CascadeType.REMOVE)
+    @OneToOne
+    @JoinColumn(name = "id_utente")
     private Utente utente;
 
     @OneToOne(mappedBy = "tessera", cascade = CascadeType.REMOVE)
@@ -36,10 +37,11 @@ public class Tessera {
     }
 
 
-    public Tessera(LocalDate dataDiEmissioneTessera, LocalDate dataOdiernaTessera) {
+    public Tessera(LocalDate dataDiEmissioneTessera, LocalDate dataOdiernaTessera, Utente utente) {
         this.dataDiEmissioneTessera = dataDiEmissioneTessera;
         this.dataDiScandenzaTessera = dataDiEmissioneTessera.plusYears(1);
         this.dataOdiernaTessera = dataOdiernaTessera;
+        this.utente = utente;
     }
 
     public Abbonamento getAbbonamento() {
