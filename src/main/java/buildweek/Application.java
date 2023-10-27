@@ -37,16 +37,7 @@ public class Application {
         PeriodoDAO ped = new PeriodoDAO(em);
 
 
-        //***************** STEP 1 CREARE TESSERA ************************
-
-//        Utente foundUser = ud.findById(378);
-//        Tessera newTessera = new Tessera(
-//                faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-//                LocalDate.now(), foundUser);
-//        td.save(newTessera);
-
-
-        //***************** STEP 2 CREARE UTENTI ************************
+        //***************** STEP 1 CREARE UTENTE ************************
 
 //        for (int i = 0; i < 1; i++) {
 //            Utente User = new Utente(
@@ -56,6 +47,15 @@ public class Application {
 //            );
 //            ud.save(User);
 //        }
+
+
+        //***************** STEP 2 CREARE TESSERA ************************
+
+//        Utente foundUser = ud.findById(378);
+//        Tessera newTessera = new Tessera(
+//                faker.date().past(3, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+//                LocalDate.now(), foundUser);
+//        td.save(newTessera);
 
 
         //***************** STEP 3 CREARE ABBONAMENTO ************************
@@ -247,7 +247,7 @@ public class Application {
                             }
                             case 2: {
                                 System.out.println("Inserisci l'id dell'utente da eliminare");
-                                int idUtente = Integer.parseInt(input.nextLine());
+                                long idUtente = Long.parseLong(input.nextLine());
                                 ud.findByIdAndDelete(idUtente);
                                 break;
                             }
@@ -330,7 +330,10 @@ public class Application {
                                 2: Compra un biglietto,
                                 3: Compra un abbonamento,
                                 4: Cerca le tratte,
-                                5: ,
+                                5: Visualizza la tua tessera
+                                6: Visualizza il tuo abbonamento
+                                                                
+                                                                
                                 """);
                         int choose3 = Integer.parseInt(input.nextLine());
                         switch (choose3) {
@@ -373,20 +376,44 @@ public class Application {
                                 break;
                             }
                             case 3: {
-                                System.out.println("Inserisci il tuo numero id");
-                                int nameUser = Integer.parseInt((input.nextLine()));
-                                Tessera foundTessera = td.findById(nameUser);
-                                Abbonamento newAbbonamento = new Abbonamento(
-                                        DurataAbbonamento.values()[faker.number().numberBetween(0, DurataAbbonamento.values().length)],
-                                        LocalDate.now(),
-                                        LocalDate.now(),
-                                        foundTessera);
-                                ad.save(newAbbonamento);
-                                break;
+                                System.out.println("1: ABBONAMENTO MENSILE, 2: ABBONAMENTO SETTIMANALE");
+                                int tipoAbb = Integer.parseInt(input.nextLine());
+                                switch (tipoAbb) {
+                                    case 1: {
+                                        System.out.println("Inserisci il tuo numero id");
+                                        int nameUser = Integer.parseInt((input.nextLine()));
+                                        Tessera foundTessera = td.findById(nameUser);
+                                        Abbonamento newAbbonamento = new Abbonamento(
+                                                DurataAbbonamento.MENSILE,
+                                                LocalDate.now(),
+                                                LocalDate.now(),
+                                                foundTessera);
+                                        ad.save(newAbbonamento);
+                                        break;
+                                    }
+                                    case 2: {
+                                        System.out.println("Inserisci il tuo numero id");
+                                        int nameUser = Integer.parseInt((input.nextLine()));
+                                        Tessera foundTessera = td.findById(nameUser);
+                                        Abbonamento newAbbonamento = new Abbonamento(
+                                                DurataAbbonamento.SETTIMANALE,
+                                                LocalDate.now(),
+                                                LocalDate.now(),
+                                                foundTessera);
+                                        ad.save(newAbbonamento);
+                                        break;
+                                    }
+                                }
+
                             }
+                            break;
+
                             case 4: {
                                 trd.getTrattaFull().forEach(System.out::println);
                                 break;
+                            }
+                            case 5: {
+
                             }
                         }
                     }
