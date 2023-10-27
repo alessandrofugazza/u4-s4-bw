@@ -404,7 +404,7 @@ public class Application {
                                         break;
                                     }
                                     case 2: {
-                                        System.out.println("Inserisci il tuo numero id");
+                                        System.out.println("Inserisci l'id della tua tessera");
                                         int nameUser = Integer.parseInt((input.nextLine()));
                                         Tessera foundTessera = td.findById(nameUser);
                                         Abbonamento newAbbonamento = new Abbonamento(
@@ -440,7 +440,7 @@ public class Application {
 
                         }
                     }
-                                    
+
                 }
             } catch (Exception ex) {
                 System.out.println(ex);
